@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.ejs": "html"
+    },
+    "git.ignoreLimitWarning": true
+}

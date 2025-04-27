@@ -1,0 +1,719 @@
+@font-face {
+    font-family: "Menterriw";
+    src: url(../fonts/MerriweatherSans-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: "Monte";
+    src: url(../fonts/Montserrat-Italic-VariableFont_wght.ttf);
+}
+
+html,body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    background-color: #f1f1f1;
+    margin: 0;
+    max-width: 100%;
+    padding: 0px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+/*Buscador banner*/
+h1{
+    text-align: center;
+    font-family: Menterriw;
+    font-weight: 900;
+    margin-top: 50px;
+}
+
+/*Layout*/
+
+.titulo-section{
+    position: absolute;
+    top: 130px;
+    font-size: 40px;
+}
+
+section{
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+    z-index: 1;
+}
+
+section > h1{
+    margin-top: 100px;
+    text-align: center;
+}
+
+.banner-busqueda{
+    width: 1240px;
+    height: auto;
+    margin: 50px;
+    height: 400px;
+}
+
+.formulario-layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    top: 320px;
+    max-width: 1040px;
+    background-color:rgb(206, 226, 248, 0.7);
+    padding: 50px;
+}
+
+select > option{
+    font-family: Mentierrew;
+    font-size: 23px;
+    border: 1px solid transparent;
+}
+.radio_group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: -70px;
+}
+.radio_group label{
+    background-color: white;
+    min-width: 350px;
+    margin-top: 50px;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    color: black;
+    font-size: 30px;
+    font-style: italic;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.9s ease;
+    transition: scale 0.5s ease;
+}
+
+.radio_group label:hover{
+    scale:1.1;
+    background-color: #5cb85c;
+    
+}
+
+.search-input{
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 100%;
+    
+}
+
+.search{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 30px;
+}
+
+.search input[type="search"]::placeholder{
+    font-size: 17px;
+}
+
+.search > input[type="button"]{
+    width: 250px;
+    background-color: #5cb85c;
+    padding: 10px;
+    border: 3px solid transparent;
+    font-family: Menterriew;
+    font-weight: 300;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+}
+
+.search > input[type="button"]:hover{
+    opacity: 0.9;
+}
+
+.search > select{
+    border: 1px solid black;
+    border-radius: 0px;
+    padding: 10px;
+    font-family: Mentierrew;
+    font-size: 23px;
+}
+
+.search > input{
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.radio_group input:checked + .radio_label{
+    background: #5cb85c;
+}
+
+.radio_group input:blank + .radio_label{
+    background: white;
+}
+
+.radio_group input{
+    display: none;
+}
+
+.search input[type="search"]{
+    width: 100%;
+    padding: 10px;
+}
+
+article{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 120px;
+    height: auto;
+    margin-top: 80px;
+}
+
+.articulo1, .articulo2{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    max-width: 540px;
+    height: 190px;
+    background-color: #f1f1f1;
+    box-shadow:  0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(223, 222, 222);
+}
+
+.articulo1 > img, .articulo2 > img{
+    max-width: 220px;
+}
+
+.title-text h3{
+    font-size: 20px;
+    font-family: Monte;
+    font-weight: 900;
+}
+
+.title-text p{
+    font-size: 17px;
+}
+
+.title-text a{
+    text-decoration: none;
+    font-weight: 900;
+    color: rgb(0, 157, 255);
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+}
+
+.title-text a:hover{
+    opacity: 0.6;
+}
+
+.articulo-agencia{
+    width: 100%;
+    max-width: 940px;
+    height: 800px;
+    margin-top: -140px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.articulo-agencia > img{
+    width: 940px;
+    height: 370px;
+    z-index: 1;
+    box-shadow:  0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.title-text-agencia{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    width: 100%;
+    box-shadow:  0 4px 12px rgba(0, 0, 0, 0.1);
+    height: auto;
+    padding-bottom: 20px;
+    z-index: 0;
+}
+
+.title-text-agencia > h3{
+    margin: 17px;
+    margin-top: 25px;
+    font-size: 20px;
+    font-family: Monte;
+    font-weight: 900;
+}
+
+.title-text-agencia > p{
+    margin: 0 auto;
+    margin: 17px;
+    font-size: 17px;
+}
+
+.title-text-agencia > input[type="button"]{
+    margin: 0 auto;
+    font-size: 20px;
+    color: white;
+    border: 3px solid #0d6efd;
+    background-color: #0d6efd;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    width: 50%;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+}
+
+.title-text-agencia > input[type="button"]:hover {
+    opacity: 0.6;
+}
+
+
+/* MEDIA QUERY PARA TABLETS Y SMARTPHONES*/
+
+@media (max-width: 1027px){
+
+    html, body{
+        width: 100%;
+    }
+
+    article{
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        width: 100%;
+        gap: 20px;
+        height: auto;
+        margin-top: 80px;
+    }
+
+    .articulo1, .articulo2{
+        gap: 20px;
+        max-width: 440px;
+        height: 190px;
+    }
+
+    section > h1{
+        margin-top: 120px;
+    }
+
+    .banner-busqueda{
+        width: 940px;
+        height: 350px;
+    }
+
+    .radio_group label{
+        min-width: 250px;
+        margin-top: 50px;
+        min-height: 70px;
+        color: black;
+        font-size: 30px;
+    }
+
+    .formulario-layout{
+        max-width: 740px;
+    }
+
+}
+
+@media (max-width: 769px){
+
+    html, body{
+        width: 100%;
+    }
+
+    article{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        gap: 20px;
+        height: auto;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    section  h1{
+        display: none;
+    }
+
+    .banner-busqueda{
+        width: 940px;
+        height: 350px;
+    }
+
+    .radio_group label{
+        min-width: 150px;
+        margin-top: 50px;
+        min-height: 70px;
+        font-size: 23px;
+    }
+
+    .articulo1, .articulo2{
+        margin-top: 10px;
+        gap: 10px;
+        max-width: 80%;
+    }
+
+    .title-text{
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .title-text > h3{
+        margin-top: 5px;
+    }
+
+    .articulo1 > img, .articulo2 > img{
+        width: 220px;
+    }
+
+    .formulario-layout{
+        margin: 30px;
+        margin-top: 10px;
+        max-width: 540px;
+        height: 100px;
+    }
+
+    .title-text-agencia{
+        max-width: 680px;
+    }
+
+    .articulo-agencia{
+        max-width: 740px;
+    }
+
+    .articulo-agencia > img{
+        max-width: 680px;
+    }
+
+    .search > select{
+        border: 1px solid black;
+        border-radius: 0px;
+        width: 150px;
+        padding: 1px;
+        font-family: Mentierrew;
+        font-size: 15px;
+    }
+    
+    .search > select > option{
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 427px){
+
+    html,body{
+        width: 100%;
+    }
+
+    article{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        gap: 20px;
+        height: auto;
+        margin-top: 80px;
+    }
+
+    section > h1{
+        display: none;
+        
+    }
+
+    .banner-busqueda{
+        margin: 0 auto;
+        max-width: 415px;
+        height: 250px;
+    }
+
+    .search input[type="search"]{
+        max-width: 350px;
+    }
+
+    .radio_group label{
+        min-width: 100px;
+        padding: 9px;
+        margin-top: 70px;
+        min-height: auto;
+        font-size: 17px;
+    }
+
+    .articulo1, .articulo2{
+        margin-top: 10px;
+        gap: 10px;
+        height: auto;
+        max-width: 90%;
+    }
+
+    .title-text{
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .title-text p{
+        font-size: 11px;
+    }
+
+    .title-text > h3{
+        margin-top: 5px;
+        font-size: 15px;
+    }
+
+    .articulo1 > img, .articulo2 > img{
+        max-width: 220px;
+    }
+
+    .formulario-layout{
+       display: flex;
+       max-width: 300px;
+       flex-direction: column;
+       margin-top: -145px;
+    }
+
+    .search{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search  select{
+        width: 250px;
+    }
+
+    .title-text-agencia{
+        max-width: 340px;
+    }
+
+    .articulo-agencia{
+        margin-top: -230px;
+    }
+
+    .articulo-agencia > img{
+        max-width: 340px;
+        height: auto;
+    }
+
+    .search > select{
+        border: 1px solid black;
+        border-radius: 0px;
+        width: 150px;
+        padding: 1px;
+        font-family: Mentierrew;
+        font-size: 15px;
+    }
+    
+    .search > select > option{
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .title-text-agencia > input[type="button"]{
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 377px){
+
+    html,body{
+        width: 100%;
+    }
+
+    article{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        gap: 20px;
+        height: auto;
+        margin-top: 80px;
+    }
+
+    section > h1{
+        display: none;
+        
+    }
+
+    .banner-busqueda{
+        margin: 0 auto;
+        max-width: 360px;
+        height: 200px;
+    }
+
+    .radio_group label{
+        min-width: 80px;
+        padding: 9px;
+        margin-top: 70px;
+        min-height: auto;
+        font-size: 17px;
+    }
+
+    .articulo1, .articulo2{
+        margin-top: 10px;
+        gap: 10px;
+        height: 130px;
+        max-width: 90%;
+    }
+
+    .articulo1 > img, .articulo2 > img{
+        width: 150px;
+    }
+
+    .title-text{
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .title-text p{
+        font-size: 9px;
+    }
+
+    .title-text > h3{
+        margin-top: 0px;
+        font-size: 13px;
+    }
+
+    .title-text a{
+        font-size: 9px;
+    }
+
+    .articulo1 > img, .articulo2 > img{
+        max-width: 220px;
+    }
+
+    .formulario-layout{
+       display: flex;
+       max-width: 250px;
+       flex-direction: column;
+       height: 30px;
+       margin-top: -145px;
+    }
+
+    .search{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search input[type="search"]{
+        max-width: 275px;
+        height: auto;
+    }
+
+    .search  select{
+        width: 250px;
+    }
+
+    .search input[type="button"]{
+        width: 200px;
+        font-size: 17px;
+        height: auto;
+    }
+
+    .title-text-agencia{
+        max-width: 340px;
+    }
+
+    .articulo-agencia{
+        margin-top: -230px;
+    }
+
+    .articulo-agencia > img{
+        max-width: 340px;
+        height: auto;
+    }
+
+    .search > select{
+        border: 1px solid black;
+        border-radius: 0px;
+        width: 150px;
+        padding: 1px;
+        font-family: Mentierrew;
+        font-size: 15px;
+    }
+    
+    .search > select > option{
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .title-text-agencia > input[type="button"]{
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 325px){
+
+    html,body{
+        width: 100%;
+    }
+    
+    .title-text-agencia{
+        max-width: 280px;
+    }
+
+    .articulo-agencia > img{
+        max-width: 280px;
+        height: auto;
+    }
+
+    .formulario-layout{
+        width: 190px;
+    }
+
+    .articulo1 > img, .articulo2 > img{
+        max-width: 140px;
+    }
+
+    .radio_group label{
+        min-width: 60px;
+        padding: 9px;
+        margin-top: 70px;
+        min-height: auto;
+        font-size: 13px;
+    }
+
+    .title-text p{
+        font-size: 9px;
+    }
+
+    .title-text > h3{
+        margin-top: 5px;
+        font-size: 11px;
+    }
+
+    .title-text a{
+        font-size: 9px;
+    }
+
+    .banner-busqueda{
+        margin: 0 auto;
+        max-width: 310px;
+        height: 200px;
+    }
+
+    .search input[type="search"]{
+        width: 280px;
+        padding: 7px;
+    }
+
+
+    .search input[type="button"]{
+        width: 150px;
+        font-size: 15px;
+        height: auto;
+    }
+}

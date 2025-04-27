@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/stylesheets/stylesLogin.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <main>
+
+        <img src="/images/logoMiespacioIdeal.png" alt="">
+
+        <form action="/users/login" method="Post">
+
+            <h3>
+                Iniciar Sesión
+            </h3>
+
+            <label for="">Ingresa tu email</label>
+            <input type="email" name="email" id="email" required>
+            <input type="submit" value="Confirmar">
+
+            <div id="codigo-section" style="display:none; margin-top:20px;">
+                <label for="">Introduce el código recibido</label>
+                <input type="text" id="codigo-verificacion" placeholder="Código de verificación">
+                <button id="btn-verificar">Verificar Código</button>
+            </div>
+        </form>
+
+        <form class="inicio-cuentas" action="#">
+
+            <h3>
+                Tambien Puedes
+            </h3>
+
+            <a href="/auth/google">Iniciar sesion con google</a>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>

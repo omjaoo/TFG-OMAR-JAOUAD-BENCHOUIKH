@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="/stylesheets/header.css">
+  <link rel="stylesheet" href="/stylesheets/footer.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  
+  <% include componentes/header %>
+
+  <section>
+
+    <img class="banner-busqueda" src="/images/img11.jpg" alt="">
+
+    <h1 class="titulo-section">
+      Imagina tu nuevo hogar... y encuéntralo 
+    </h1>
+
+    <div class="formulario-layout">
+      <form class="radio_group" action="#">
+        
+        <input type="radio" class="btn-check" name="modo" id="compra" value="compra">
+        <label for="compra" class="radio_label">Compra</label>
+          
+        <input type="radio" name="modo" id="alquila" value="alquila">
+        <label for="alquila" class="radio_label">Alquila</label>
+          
+        <input type="radio" name="modo" id="compartir" value="compartir">
+        <label for="compartir" class="radio_label">Compartir</label>
+      </form>
+      <div class="search-input" style="margin-top: 20px;">
+        <form class="search" action="">
+
+          <select name="eleccionpropiedad" id="eleccionpropiedad">
+            <option disabled selected>-Elige una opción-</option>
+            <option value="chalet">Chalet</option>
+            <option value="condominio">Condominio</option>
+            <option value="casa">Casa</option>
+            <option value="piso">Piso</option>
+          </select>
+          
+          <input type="search" id="busqueda" name="busqueda" placeholder="🔍Escribe dónde buscas..." >
+          <input type="button" class="btn" value="Buscar">
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <article class="articulo">
+
+    <div class="articulo1">
+      <img src="/images/cartitle.png" alt="">
+      <div class="title-text">
+        <h3>
+          Publica hasta 3 anuncios gratis
+        </h3>
+        <p>
+          Hasta 3 anuncios gratis ayuda a alguien a encontrar tu espacio ideal. 
+        </p>
+        <a href="">Publica Ahora</a>
+      </div>
+    </div>
+
+    <div class="articulo2">
+      <img src="/images/valoramoscasa.png" alt="">
+      <div class="title-text">
+        <h3>
+          Tasa tu casa Online
+        </h3>
+        <p>
+          Maxima valoración en tu propiedad, tasala ya.
+        </p>
+        <a href="">Valora Ahora</a>
+      </div>
+    </div>
+
+  </article>
+
+  <article>
+
+    <div class="articulo-agencia">
+      <img src="/images/encuentraagencia79.png" alt="">
+      <div class="title-text-agencia">
+        <h3>
+          Recomendamos agencias cerca de ti
+        </h3>
+        <p>
+          Encuentra fácilmente las mejores agencias inmobiliarias en tu zona, 
+          compara servicios y comienza a gestionar tu propiedad hoy mismo.
+        </p>
+        <input type="button" value="Buscar tu agencia Ideal">
+      </div>
+    </div>
+
+  </article>
+
+  <form action="/logout" method="get">
+    <button type="submit">Cerrar Sesión</button>
+</form>
+
+
+  <% include componentes/footer %>
+
+</body>
+
+</html>
