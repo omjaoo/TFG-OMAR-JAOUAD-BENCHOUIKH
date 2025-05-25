@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/casa.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <script src="https://unpkg.com/lottie-web@5.7.13/build/player/lottie.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="/stylesheets/styleDetalle.css">
+    <link rel="stylesheet" href="/stylesheets/pantallaCarga.css">
+    <title>Detalles</title>
+</head>
+
+<body>
+
+    <% include componentes/header %>
+        <div class="container-general">
+            <main class="detalle-container">
+
+                <section class="galeria-propiedad">
+                    <div class="carousel">
+                        <% propiedadEncontrada.imagenes.forEach((img, i)=> { %>
+                            <div class="slide <%= i === 0 ? 'active' : '' %>">
+                                <img src="<%= img %>" alt="Imagen propiedad <%= i + 1 %>">
+                            </div>
+                            <% }) %>
+                                <button class="prev">&#10094;</button>
+                                <button class="next">&#10095;</button>
+                    </div>
+                </section>
+
+                <section class="info-propiedad">
+                    <div class="titulo-like">
+                        <h1>
+                            <%= propiedadEncontrada.tipo.toUpperCase() %> en <%= propiedadEncontrada.direccion %>
+                        </h1>
+                        <div class="like-wrapper <%= propiedadEncontrada.likes.includes(inicioSesion?.id) ? 'liked' : '' %>"
+                            data-id="<%= propiedadEncontrada._id %>">
+                            <svg class="icono-like" viewBox="0 0 24 24" width="28" height="28">
+                                <path class="corazon-path"
+                                    d="M12 21C12 21 6.5 16.2 3.5 12.8C1.6 9.2 3.5 5 7 5C8.8 5 10.4 6 11.1 7.4C11.6 6 13.2 5 15 5C18.5 5 20.4 9.2 18.5 12.8C15.5 16.2 12 21 12 21Z"
+                                    stroke="#e84118" stroke-width="2" fill="transparent" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="precio-fecha">
+                        <p class="precio">€ <%= propiedadEncontrada.precio.toLocaleString('es-ES') %></p>
+                        <p class="fecha-publicacion">
+                            Publicado el <%= new Date(propiedadEncontrada.fecha_publicacion).toLocaleDateString('es-ES', {
+                            day: 'numeric', month: 'long', year: 'numeric'
+                            }) %>
+                        </p>
+                    </div>
+                    <ul class="detalles-basicos">
+                        <li><strong>Superficie:</strong>
+                            <%= propiedadEncontrada.superficie %> m²
+                        </li>
+                        <li><strong>Habitaciones:</strong>
+                            <%= propiedadEncontrada.numero_habitaciones %>
+                        </li>
+                        <li><strong>Baños:</strong>
+                            <%= propiedadEncontrada.numero_baños %>
+                        </li>
+                       
+                        <% if (propiedadEncontrada.piscina) { %>
+                            <li><strong>Piscina:</strong> Sí</li>
+                            <% } %>
+                    </ul>
+                    <p class="descripcion">
+                        <%= propiedadEncontrada.descripcion.replace(/\\n/g, '<br>' ) %>
+                    </p>
+
+                </section>
+
+            </main>
+
+            <aside class="info-anunciante">
+                <h2>Anunciante</h2>
+                <img src="<%= usuarioPropiedad.foto || '/images/usuario.png' %>" alt="Foto del anunciante"
+                    class="foto-anunciante">
+                <p>
+                    <strong>
+                        <%= usuarioPropiedad.nombre %>
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        <%= usuarioPropiedad.email %>
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        <%= usuarioPropiedad.telefono %>
+                    </strong>
+                </p>
+
+                <!-- <div id="animacion"></div> -->
+                <div id="contact-button" data-id="<%= propiedadEncontrada._id %>"></div>
+
+                <% if(userAlerta){ %>
+
+                    <button type="button"  id="crearAlerta" class="btn-alerta" data-id="<%= propiedadEncontrada._id %>">
+                        <%= alerta
+                            ? 'Eliminar alerta para esta propiedad'
+                            : 'Crear alerta para esta propiedad'
+                        %>
+                    </button>
+
+                <% }else{ %>
+                    <a href="/users/login" style="text-decoration: none; width: 200px; margin-top: 18px;" class="btn-alerta">
+                        Inicia sesión para crear alerta
+                    </a>
+                <% } %>
+                 
+            </aside>
+        </div>
+
+        <div class="contact-modal" id="contact-modal">
+            <div class="modal-content">
+                <form id="contact-form">
+                    <h2>Envía tu mensaje al anunciante</h2>
+                    <p class="intro-text">Dejar un mensaje aumenta tus probabilidades de encontrar tu espacio ideal</p>
+
+                    <textarea id="mensaje" name="mensaje" rows="5">
+Hola, estoy interesado/a en esta propiedad. ¿Podrías darme más información?
+                    </textarea>
+
+                    <div class="form-buttons">
+                        <button type="submit" id="enviar-btn">Enviar</button>
+                        <button type="button" id="cancelar-btn" onclick="cerrarModal()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="success-animation" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(255,255,255,0.95); z-index: 99999; align-items: center; justify-content: center;">
+            <div style="width: 200px; height: 200px;" id="success-lottie"></div>
+        </div>
+
+        <script defer src="/javascripts/crearAlertas.js"></script>
+        <script src="/javascripts/like.js" defer></script>
+        <script src="/javascripts/contactar.js" defer></script>
+        <script src="/javascripts/carrusel.js" defer></script>
+        <% include componentes/footer %>
+</body>
+
+</html>

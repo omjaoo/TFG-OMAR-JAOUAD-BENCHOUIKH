@@ -4,17 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-
 const MongoStore = require('connect-mongo');
 const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var perfilRouter = require('./routes/perfil');
+var propiedadRouter = require('./routes/propiedades');
 
 
 const loginRouter = require('./routes/login');
 const passport = require("passport");
 const session = require('express-session');
+const mongoose = require('mongoose');
+const { mongodb } = require('./keys');
 
 
 require('./middleware/google');
@@ -33,7 +36,36 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Sesiones para Passport
+app.use(session({
+  name: 'miCookieSesion', //nombre de la cookie de sesion
+  secret: 'unsecretoseguro123',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 30 * 24 * 60 * 60 * 1000   
+    
+  },
+
+  store: MongoStore.create({
+    mongoUrl: mongodb.URI,
+    ttl: 30 * 24 * 60 * 60             
+  })
+}));
+
+app.use('/', require('./routes/perfil'));
+
+//usuario disponible en todas las vistas
+app.use((req, res, next) => {
+  // si no hay sesión, será null
+  res.locals.usuario = req.session.inicioSesion || null;
+  next();
+});
+
 app.use('/', indexRouter);
+app.use('/perfil', perfilRouter)
+app.use('/propiedad', propiedadRouter)
 app.use('/users', usersRouter);
 app.use('/auth', require('./routes/login'))
 
@@ -46,15 +78,10 @@ app.use(cors({
 
 }));
 
-// Sesiones para Passport
-app.use(session({
-  secret: 'unsecretoseguro123',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}));
+
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 

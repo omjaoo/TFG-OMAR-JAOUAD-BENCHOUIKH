@@ -1,22 +1,39 @@
+@font-face {
+    font-family: "Menterriw";
+    src: url(../fonts/MerriweatherSans-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: "Monte";
+    src: url(../fonts/Montserrat-Italic-VariableFont_wght.ttf);
+}
+
+
 body{
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #F3F2F5;
 }
 
 main{
-    margin: 0 auto;
-    border: 2px solid black;
-    width: 940px;
+    margin: 30px auto;
+    border: 2px solid transparent;
+    border-radius: 7px;
+    width: 460px;
+    height: auto;
     box-shadow: 0px 4px 12px rgb(0,0,0, 0.1);
-    
+    padding-bottom: 20px;
+    background-color: #fff;
+    align-items: center;
 }
 
 img{
-    width: 100%;
-    object-fit: contain;
-    margin: 0 auto;
-    height: 300px;
+    width: 300px;
+    margin: 30px auto;
+    display: block;
 }
 
 div{
@@ -30,16 +47,25 @@ form{
 
 form > label{
     font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    margin-left: 30px;
+    width: 330px;
+    margin-top: 0px;
 }
 
 form > input[type="email"]{
-    padding: 10px;
+    padding: 15px;
+    margin: 0 auto;
+    width: 330px;
 }
 
-form h3{
-    font-size: 30px;
+.titulo-inicio{
+    margin-top: 5px;
+    font-size: 24px;
+    margin-left: 30px;
     font-weight: 500;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 form{
@@ -58,13 +84,236 @@ form input[type="submit"]{
     color: whitesmoke;
     font-size: 17px;
     cursor: pointer;
+    width: 370px;
+    margin: 0 auto;
     transform: opacity 0.5s ease;
 }
 
-form input[type="button"]:hover{
-    opacity: 0.7;
+form input[type="submit"]:hover{
+    opacity: 0.5;
 }
 
 .inicio-cuentas h3{
     text-align: center;
+    margin-top: 50px;
+    font-size: 24px;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.google-login{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background-color:white;
+    border:1px solid #dcdcdc;
+    border-radius:4px;
+    padding:8px 14px;
+    width: 330px;
+    margin: 0 auto;
+    margin-top: -20px;
+    margin-bottom: 30px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    cursor:pointer;
+    transition:background-color .2s ease;
+}
+  
+.google-login:hover{
+    background-color:#f7f7f7;
+}
+  
+.google-icon{
+    width:18px;
+    height:18px;
+}
+  
+.google-text{
+    color:#5f6368;
+    padding: 10px;
+}
+
+.agency-promo{
+    text-align:center;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+}
+
+.agency-promo > span{
+    font-size: 23px;
+    font-family: Menterriw;
+}
+
+.agency-link{
+    display:block;                  
+    margin-top:12px;
+    color:#0d6efd;                  
+    font-weight:bold;
+    text-decoration:none;
+    transition:opacity .2s ease;
+}
+  
+.agency-link:hover{
+    opacity:0.75;
+}
+
+.div-section{
+    width: 320px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+  
+.codigo-section > label{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    margin-left: 30px;
+    width: 330px;
+    margin-top: 0px;
+}
+.div-section > .input_numero{
+    width: 38px;
+    height: 40px;
+    text-align: center;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-top:10px;
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+.codigo-section > input[type="number"]{
+    padding: 15px;
+    margin: 0 auto;
+    width: 130px;
+}
+
+
+.registrar-section > label{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    margin-left: 30px;
+    width: 330px;
+    margin-top: 0px;
+}
+
+.registrar-section > input[type="text"]{
+    padding: 15px;
+    margin: 0 auto;
+    width: 330px;
+}
+
+.registrar-section > input[type="text"]{
+    padding: 15px;
+    margin: 0 auto;
+    width: 330px;
+}
+
+
+.registrar-section > label{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    margin-left: 30px;
+    width: 330px;
+    margin-top: 0px;
+}
+
+.registrar-section > input[type="email"], input[type="password"]{
+    padding: 15px;
+    margin: 0 auto;
+    width: 330px;
+}
+
+
+/*Mensajes informativos de errores, este por ejemplo de emails que no coinciden a la hora de registrarse.*/
+.err{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+}
+
+.err > svg{
+    justify-content: flex-start;
+    margin-left: 20px;
+}
+
+.err > span{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.telefono{
+    width: 80%;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+/* MEDIA QUERYS PARA HACERLO RESPONSIVE */
+
+@media (max-width:769px){
+
+    main{
+        width: 340px;
+    }
+
+    form{
+        width: 330px;
+    }
+
+    form > input[type="email"]{
+        width: 250px;
+    }
+
+    .titulo-inicio{
+        font-size: 22px;
+    }
+
+    form input[type="submit"]{
+        width: 290px;
+    }
+
+    .google-login{
+        width: 290px;
+    }
+
+}
+
+@media (max-width: 427px){
+
+    form{
+        width: 330px;
+    }
+
+    form input[type="submit"]{
+        width: 250px;
+    }
+
+    form > input[type="email"]{
+        width: 220px;
+    }
+
+    form input[type="submit"]{
+        width: 260px;
+    }
+
+    .google-login{
+        width: 260px;
+    }
+}
+
+@media (max-width: 375px){
+
+    body{
+        width: 100%;
+    }
+
+    main{
+        width: 320px;
+    }
 }

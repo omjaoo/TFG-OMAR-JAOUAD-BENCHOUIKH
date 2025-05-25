@@ -1,0 +1,344 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.5;
+  min-width: 320px;
+}
+
+.container-general {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.detalle-container {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.galeria-propiedad {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.carousel {
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+.slide.active {
+  display: block;
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  background-color: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+.prev { left: 1rem; }
+.next { right: 1rem; }
+.prev:hover, .next:hover { background-color: rgba(0,0,0,0.6); }
+
+.info-propiedad {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.titulo-like {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.precio-fecha {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.precio {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #2c3e50;
+}
+.fecha-publicacion {
+  font-size: 1em;
+  color: #7f8c8d;
+}
+
+.detalles-basicos {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem 1rem;
+  padding: 0;
+  margin: 0;
+}
+.detalles-basicos li {
+  padding: 0.3rem 0;
+  font-size: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.descripcion {
+  white-space: pre-line;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  background: #f2f2f2;
+  border-left: 4px solid #2ecc71;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.info-anunciante {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+  text-align: center;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info-anunciante {
+  position: relative;   /* para que los elementos absolutos se anclen aquí */
+  padding-bottom: 3rem; /* espacio extra para el botón */
+}
+
+/* Botón dentro del aside */
+.info-anunciante #contact-button {
+  position: absolute;
+  top: 21.5rem;            /* ajusta verticalmente */
+  right: 1rem;          /* siempre pegado al borde derecho */
+  width: 50px;          /* o el tamaño que necesites */
+  height: 50px;
+  background: url('/animations/animacion.json') no-repeat center center;
+  background-size: contain;
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+/* Animación de vaivén / inclinación */
+@keyframes shake {
+  0%, 100% { transform: translateY(-50%) rotate(-8deg); }
+  25%      { transform: translateY(-50%) rotate( 8deg); }
+  50%      { transform: translateY(-50%) rotate(-4deg); }
+  75%      { transform: translateY(-50%) rotate( 4deg); }
+}
+
+.info-anunciante #crearAlerta {
+  position: absolute;
+  top: 21rem;            /* ajusta verticalmente */
+  left: 1rem;          /* siempre pegado al borde derecho */
+  width: 200px;          /* o el tamaño que necesites */
+  height: 50px;
+  margin-top: 20px;
+  background-size: contain;
+  cursor: pointer;
+  z-index: 10;
+  animation: shake 2s ease-in-out infinite;
+}
+
+.btn-alerta {
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-alerta:hover {
+  background-color: #e68900;
+}
+
+.foto-anunciante {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+}
+.like-wrapper{
+  cursor: pointer;
+}
+.boton-like {
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  align-self: flex-end;
+}
+.like-wrapper.liked .corazon-path {
+  fill: #e84118;
+  animation: latido 1.5s ease-in-out infinite;
+}
+@keyframes latido {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Contact button */
+#contact-button {
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  position: fixed;
+  top: 400px;
+  right: 15px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+/* Modal */
+#contact-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-content {
+  background: #fff;
+  z-index: 100000;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Cuando añadimos la clase .active */
+.contact-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes fadeInContent {
+  from { transform: translateY(-10px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* El contenido modal dentro */
+.contact-modal, .modal-content {
+  position: relative;   /* por defecto */
+  z-index: 100001;      /* solo para asegurarme */
+  animation: fadeInContent 0.3s ease-in-out both;
+}
+
+.modal-content h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+.intro-text {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+#mensaje {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.form-buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+#enviar-btn { background: #007bff; color: #fff; }
+#enviar-btn:hover { background: #0056b3; }
+#cancelar-btn { background: #e0e0e0; color: #333; }
+#cancelar-btn:hover { background: #c7c7c7; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .container-general {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .detalle-container {
+    flex: 1;
+  }
+  .info-anunciante {
+    flex: 0 0 450px;
+    position: sticky;
+    top: 80px;
+    margin-left: 1rem;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .prev, .next { font-size: 1.25rem; padding: 0.4rem; }
+  .precio { font-size: 1.5em; }
+  .detalle-container { padding: 1rem; }
+  #contact-button { width: 50px; height: 50px; bottom: 10px; right: 10px; }
+}

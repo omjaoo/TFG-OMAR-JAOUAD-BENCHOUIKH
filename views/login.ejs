@@ -4,42 +4,162 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/stylesheets/stylesLogin.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/casa.png">
+    <link rel="stylesheet" href="/stylesheets/pantallaCarga.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 
 <body>
 
     <main>
 
-        <img src="/images/logoMiespacioIdeal.png" alt="">
+        <a href="/">
+            <img src="/images/logoMiespacioIdeal.png" alt="">
 
-        <form action="/users/login" method="Post">
+        </a>
 
-            <h3>
-                Iniciar Sesión
-            </h3>
 
-            <label for="">Ingresa tu email</label>
-            <input type="email" name="email" id="email" required>
-            <input type="submit" value="Confirmar">
+        <% if (estado===null){ %>
 
-            <div id="codigo-section" style="display:none; margin-top:20px;">
-                <label for="">Introduce el código recibido</label>
-                <input type="text" id="codigo-verificacion" placeholder="Código de verificación">
-                <button id="btn-verificar">Verificar Código</button>
-            </div>
-        </form>
+            <form action="/users/login" method="Post">
 
-        <form class="inicio-cuentas" action="#">
+                <h3 class="titulo-inicio">
+                    Iniciar Sesión o Regístrarse
+                </h3>
 
-            <h3>
-                Tambien Puedes
-            </h3>
 
-            <a href="/auth/google">Iniciar sesion con google</a>
 
-        </form>
+                <label for="">Tu email</label>
+                <input type="email" name="email" id="email" required>
+                <input type="submit" value="Confirmar">
+
+
+
+
+
+                <!-- Crear una condicion para que lo muestre si el correo ha sido enviado para verificarlo -->
+
+            </form>
+
+            <form class="inicio-cuentas" action="#">
+
+                <h3>
+                    Tambien Puedes
+                </h3>
+
+                <span class="google-login" onclick="location.href='/auth/google'">
+                    <svg class="google-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 533.5 544.3">
+                        <path fill="#4285F4"
+                            d="M533.5 278.4c0-18.8-1.5-37-4.3-54.6H272v103.2h147.3c-6.4 34.5-25 63.7-53.3 83.4l86 66.7c50-46 79-113.6 79-198.7z" />
+                        <path fill="#34A853"
+                            d="M272 544.3c71.2 0 131-23.5 174.8-63.8l-86-66.7c-24 16-54.6 25.3-88.8 25.3-68 0-125.6-45.9-146.3-107.7l-89.4 69c40.4 79.8 123.5 134 236 134z" />
+                        <path fill="#FBBC05"
+                            d="M125.7 331.4c-11.5-34.5-11.5-71.7 0-106.2l-89.4-69C-4 221.5-4 322.8 36.3 401l89.4-69z" />
+                        <path fill="#EA4335"
+                            d="M272 107.3c37.9 0 72 13 99 38l74.1-74.1C399 25.5 343.2 0 272 0 159.5 0 76.4 54.2 36 134l89.7 69C146.4 153.2 204 107.3 272 107.3z" />
+                    </svg>
+                    <span class="google-text">Registrarse con Google</span>
+                </span>
+
+            </form>
+
+            <% }else if (estado===true){ %>
+
+
+                <form class="codigo-section" id="codigo-section" action="/users/verificar/codigo" method="Post">
+                    <h3 class="titulo-inicio">
+                        Iniciar Sesión o Regístrarse
+                    </h3>
+
+                    <label for="">Introduce el código recibido</label>
+                    <!-- <input type="number" id="codigo-verificacion" placeholder="Código de verificación"> -->
+                    <div class="div-section">
+                        <% for (let i=1; i <=6; i++) { %>
+                            <input id="digit-<%= i %>" name="d<%= i %>" class="input_numero" type="text"
+                                inputmode="numeric" placeholder="_" pattern="[0-9]" maxlength="1" required>
+                            <% } %>
+                    </div>
+                    
+                    <input type="submit" id="btn-verificar" value="Verificar Código">
+                </form>
+
+                <% }else if (estado===false){ %>
+
+                    <form class="registrar-section" id="registrar-section" action="/users/registrar" method="POST">
+                        <h3 class="titulo-inicio">
+                            Iniciar Sesión o Regístrarse
+                        </h3>
+                        <label for="">Tu email</label>
+                        <input type="email" name="email" id="email" value="<%= emailRegistrar%>" required>
+                        <% if(coincidencia === false){ %>
+                            <p class="err">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="28" viewBox="0 0 100 100">
+                                    
+                                    <circle cx="50" cy="50" r="45" fill="#e74c3c" stroke="#000" stroke-width="5"/>
+                                   
+                                    <text x="50" y="65" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="60" font-weight="bold" fill="#fff">!
+                                    </text>
+                                </svg>
+                                  
+                                <title>warning</title><path d="M22 11a9 9 0 0 0-9-9h-2a9 9 0 0 0-9 9v2a9 9 0 0 0 9 9h2a9 9 0 0 0 9-9v-2ZM11 6h2v8h-2V6Zm0 10h2v2h-2v-2Z"></path>
+                                <span>Los email no coinciden revisalo porfavor</span>
+                            </p>
+                        <% } %>
+                        <label for="">Repite tu email</label>
+                        <input type="text" id="registrar-email" name="emailRegistrar" placeholder="repita email">
+                        <% if(coincidencia === false){ %>
+                            <p class="err">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="28" viewBox="0 0 100 100">
+                                    
+                                    <circle cx="50" cy="50" r="45" fill="#e74c3c" stroke="#000" stroke-width="5"/>
+                                   
+                                    <text x="50" y="65" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="60" font-weight="bold" fill="#fff">!
+                                    </text>
+                                </svg>
+                                  
+                                <title>warning</title><path d="M22 11a9 9 0 0 0-9-9h-2a9 9 0 0 0-9 9v2a9 9 0 0 0 9 9h2a9 9 0 0 0 9-9v-2ZM11 6h2v8h-2V6Zm0 10h2v2h-2v-2Z"></path>
+                                <span>Los email no coinciden revisalo porfavor</span>
+                            </p>
+                        <% } %>
+
+                        <label for="">Tu nombre</label>
+                        <input type="text" name="nombre" id="nombre" placeholder="Tu nombre aqui" required>
+
+                        <label class="label-codigo" for="">Introduce el codigo de recibido</label>
+                        <div class="div-section">
+                            <% for (let i=1; i <=6; i++) { %>
+                                <input id="digit-registrar-<%= i %>" name="d<%= i %>" class="input_numero" type="text"
+                                    inputmode="numeric" placeholder="_" pattern="[0-9]" maxlength="1" required>
+                                <% } %>
+                        </div>
+
+                    <% if(coincidenciaCodigo === false){ %>
+                        <p class="err">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="28" viewBox="0 0 100 100">
+                                    
+                            <circle cx="50" cy="50" r="45" fill="#e74c3c" stroke="#000" stroke-width="5"/>
+                                   
+                            <text x="50" y="65" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="60" font-weight="bold" fill="#fff">!
+                            </text>
+                        </svg>
+                                  
+                        <title>warning</title><path d="M22 11a9 9 0 0 0-9-9h-2a9 9 0 0 0-9 9v2a9 9 0 0 0 9 9h2a9 9 0 0 0 9-9v-2ZM11 6h2v8h-2V6Zm0 10h2v2h-2v-2Z"></path>
+                        <span>El codigo de verificacion no coincide revisalo porfavor</span>
+                    </p>
+                <% } %>
+
+                <input type="submit" id="btn-registrar" value="Continuar">
+            </form>
+                        
+        <% } %>
+
+           
+       
+        <% if (fallo === true) { %>
+            <script defer src="/javascripts/errorLogin.js"></script>
+        <% } %>
 
     </main>
 

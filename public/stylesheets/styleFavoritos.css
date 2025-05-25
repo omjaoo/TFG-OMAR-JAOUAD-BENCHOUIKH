@@ -1,0 +1,164 @@
+/* Animación para entrar desde la izquierda y luego flotar en el centro */
+@keyframes slideInCenter {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(430px);
+  }
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.contenedor-principal{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+}
+
+.header-favoritos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem; 
+  width: 100%;
+}
+
+.header-favoritos .titulo {
+  margin: 0;
+}
+
+#limpiarFavoritos {
+  
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.cupid-scene{
+    display: flex;
+    flex-direction: row;
+}
+
+.empty-favorites {
+  height: calc(100vh - 160px); /* ajusta según el tamaño de tu header/footer */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: slideInCenter 1s ease-out forwards;
+}
+
+.empty-favorites .cupid-scene {
+  max-width: 300px;
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+
+.empty-favorites svg {
+  width: 100%;
+  height: auto;
+}
+
+.empty-favorites__text {
+  font-size: 1.6rem;
+  margin-top: 20px;
+  color: #555;
+}
+
+.btn-explorar {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #3182CE;
+  color: white;
+  padding: 12px 24px;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn-explorar:hover {
+  background-color: #c0bdbd;
+}
+
+#limpiarFavoritos {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: #e84118;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#limpiarFavoritos:hover {
+  background-color: #c23616;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#limpiarFavoritos:active {
+  background-color: #96281b;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#limpiarFavoritos:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(232, 65, 24, 0.5);
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .empty-favorites__text {
+    font-size: 1.3rem;
+  }
+
+  .btn-explorar {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .empty-favorites .cupid-scene {
+    max-width: 200px;
+  }
+
+  .empty-favorites {
+    
+    margin: 0 auto;
+    max-width: 600px;       
+    animation: slideInCenter 0.6s ease-out forwards;
+  }
+
+  @keyframes slideInCenter {
+    from {
+      opacity: 0;
+      transform: translateX(-100vw);  
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);      
+    }
+  }
+
+
+}
+
+
+
+

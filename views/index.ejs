@@ -2,112 +2,143 @@
 <html>
 
 <head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/casa.png">
   <title>
     <%= title %>
   </title>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/stylesheets/style.css" />
   <link rel="stylesheet" href="/stylesheets/header.css">
+  <link rel="stylesheet" href="/stylesheets/pantallaCarga.css">
   <link rel="stylesheet" href="/stylesheets/footer.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-  
+
   <% include componentes/header %>
 
-  <section>
+    <section class="hero">
+      <h1>Imagina tu nuevo hogar... y encuéntralo</h1>
 
-    <img class="banner-busqueda" src="/images/img11.jpg" alt="">
+      <form class="buscador" id="busqueda" action="/propiedad/buscador" method="post">
 
-    <h1 class="titulo-section">
-      Imagina tu nuevo hogar... y encuéntralo 
-    </h1>
+        <select name="operacion" id="operacion">
+          <option disabled selected>Tipo de operación</option>
+          <option value="venta">Comprar</option>
+          <option value="alquiler">Alquiler</option>
+        </select>
 
-    <div class="formulario-layout">
-      <form class="radio_group" action="#">
-        
-        <input type="radio" class="btn-check" name="modo" id="compra" value="compra">
-        <label for="compra" class="radio_label">Compra</label>
-          
-        <input type="radio" name="modo" id="alquila" value="alquila">
-        <label for="alquila" class="radio_label">Alquila</label>
-          
-        <input type="radio" name="modo" id="compartir" value="compartir">
-        <label for="compartir" class="radio_label">Compartir</label>
+        <select name="tipoPropiedad" id="tipoPropiedad">
+          <option disabled selected>Tipo de propiedad</option>
+          <option value="piso">Piso</option>
+          <option value="chalet">Chalet</option>
+          <option value="casa">Casa</option>
+          <option value="condominio">Condominio</option>
+        </select>
+
+        <input type="text" name="direccion" id="direccion" placeholder="Escribe una localidad o dirección">
+        <input type="submit" name="busqueda" >
+
       </form>
-      <div class="search-input" style="margin-top: 20px;">
-        <form class="search" action="">
 
-          <select name="eleccionpropiedad" id="eleccionpropiedad">
-            <option disabled selected>-Elige una opción-</option>
-            <option value="chalet">Chalet</option>
-            <option value="condominio">Condominio</option>
-            <option value="casa">Casa</option>
-            <option value="piso">Piso</option>
-          </select>
-          
-          <input type="search" id="busqueda" name="busqueda" placeholder="🔍Escribe dónde buscas..." >
-          <input type="button" class="btn" value="Buscar">
-        </form>
+    </section>
+
+    <h3 class="titulo-destacados">Descubre los espacios que están marcando tendencia esta semana</h3>
+
+    <section class="destacados">
+
+      <% propiedadesAleatorias.forEach(prop=> { %>
+        <div class="card">
+          <img src="<%= prop.imagenes[0] %>" alt="<%= prop.titulo %>">
+          <div class="info">
+            <h4>
+              <%= prop.direccion %>
+            </h4>
+            <p class="fecha-publicacion">
+              Publicado el <%= new Date(prop.fecha_publicacion).toLocaleDateString('es-ES', { day: 'numeric' ,
+                month: 'long' , year: 'numeric' }) %>
+            </p>
+            <p>
+              <%= prop.numero_habitaciones %> habitaciones · <%= prop.numero_baños %> baños · <%= prop.superficie %>m² ·
+                    <%= prop.precio %>€
+            </p>
+            <a href="/propiedad/detalles/<%= prop._id %>" class="btn-ver-mas">Ver más</a>
+          </div>
+        </div>
+        <% }) %>
+    </section>
+
+    <section class="extras">
+      <h2>¿Quieres más opciones?</h2>
+      <div class="cta">
+        <div>
+          <h3>🖊️ Dibuja tu zona</h3>
+          <p>Delimita el área exacta donde quieres buscar y descubre propiedades cercanas.</p>
+          <a class="btn-mapa" href="/users/mapa">Dibuja Aqui</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <article class="articulo">
+    <% if(busquedaVacia === true){ %>
+      <script defer src="/javascripts/busqueda.js"></script> 
+    <% }else{ %>
+      <% include componentes/pantallaCarga %>
+      <script defer src="/javascripts/pantallaCarga.js"></script>
+    <% } %>
 
-    <div class="articulo1">
-      <img src="/images/cartitle.png" alt="">
-      <div class="title-text">
-        <h3>
-          Publica hasta 3 anuncios gratis
-        </h3>
-        <p>
-          Hasta 3 anuncios gratis ayuda a alguien a encontrar tu espacio ideal. 
-        </p>
-        <a href="">Publica Ahora</a>
-      </div>
-    </div>
-
-    <div class="articulo2">
-      <img src="/images/valoramoscasa.png" alt="">
-      <div class="title-text">
-        <h3>
-          Tasa tu casa Online
-        </h3>
-        <p>
-          Maxima valoración en tu propiedad, tasala ya.
-        </p>
-        <a href="">Valora Ahora</a>
-      </div>
-    </div>
-
-  </article>
-
-  <article>
-
-    <div class="articulo-agencia">
-      <img src="/images/encuentraagencia79.png" alt="">
-      <div class="title-text-agencia">
-        <h3>
-          Recomendamos agencias cerca de ti
-        </h3>
-        <p>
-          Encuentra fácilmente las mejores agencias inmobiliarias en tu zona, 
-          compara servicios y comienza a gestionar tu propiedad hoy mismo.
-        </p>
-        <input type="button" value="Buscar tu agencia Ideal">
-      </div>
-    </div>
-
-  </article>
-
-  <form action="/logout" method="get">
-    <button type="submit">Cerrar Sesión</button>
-</form>
+    
 
 
-  <% include componentes/footer %>
+
+
+    <section id="noticias" class="noticias">
+  <h2>Últimas noticias sobre vivienda en España</h2>
+
+
+  <!-- Grid de noticias -->
+  <div id="noticiasGrid" class="noticias-grid">
+    <% if (noticias.length) { %>
+      <% noticias.forEach(n => { %>
+        <article class="noticia-card">
+          <% if (n.image_url) { %>
+            <img src="<%= n.image_url %>" alt="<%= n.title %>">
+          <% } %>
+          <div class="noticia-content">
+            <h3>
+              <a href="<%= n.url %>" target="_blank" rel="noopener">
+                <%= n.title %>
+              </a>
+            </h3>
+            <p class="noticia-meta">
+              <%= new Date(n.published_at).toLocaleDateString('es-ES',{
+                    day:   '2-digit',
+                    month: 'short',
+                    year:  'numeric'
+                  }) %>
+            </p>
+            <p class="noticia-desc"><%= n.description %></p>
+          </div>
+        </article>
+      <% }) %>
+    <% } else { %>
+      <p>No hay noticias disponibles.</p>
+    <% } %>
+  </div>
+
+</section>
+
+
+
+    <% include componentes/footer %>
+
+    
+    
 
 </body>
 

@@ -1,0 +1,61 @@
+/* Reset general */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+}
+
+
+/* Título */
+h1 {
+  margin-top: 1rem;
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Descripción */
+.mapa-descripcion {
+  margin: 0.5rem 0 1.5rem;
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+}
+
+/* Mapa */
+#map {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 600px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #map {
+    height: 400px;
+    width: 100%;
+  }
+
+  main.mapa-contenido h1 {
+    font-size: 1.5rem;
+  }
+
+  .mapa-descripcion {
+    font-size: 0.95rem;
+  }
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  #map {
+    width: 95%;
+    height: calc(100vh - 150px);
+  }
+}

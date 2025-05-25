@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mis Anuncios</title>
+  <link rel="stylesheet" href="/stylesheets/anuncios.css" />
+  <link rel="stylesheet" href="/stylesheets/header.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/casa.png">
+  <link rel="stylesheet" href="/stylesheets/footer.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+  <% include componentes/header %>
+  <main class="contenedor-anuncios">
+    <h1>Mis Anuncios</h1>
+      
+    <% if (anuncios.length === 0) { %>
+      <div class="empty-state">
+        <div class="empty-state__icon" aria-hidden="true">
+          <!-- SVG megáfono animado -->
+            <svg
+              width="96"
+              height="96"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              class="megaphone-icon"
+            >
+              <path
+                d="M3 8v8a2 2 0 0 0 2 2h1v3l5-3h5a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"
+              />
+              <line x1="15" y1="9" x2="19" y2="6" stroke-linecap="round" />
+              <line x1="15" y1="15" x2="19" y2="18" stroke-linecap="round" />
+            </svg>
+
+          </div>
+
+          <p class="empty-state__text">
+            ¡No tienes anuncios todavía!
+          </p>
+
+          <a href="/users/subirAnuncio" class="btn-publicar btn-pulse">
+            Publicar tu primer anuncio
+          </a>
+        </div>
+    <% } else { %>
+      <div class="grid-anuncios">
+        <% anuncios.forEach(a => { %>
+          <div class="card-anuncio">
+            <img src="<%= a.imagenes[0] || '/img/default.jpg' %>" alt="Foto propiedad">
+            <div class="contenido">
+              <h2><%= a.tipo %> en <%= a.direccion %></h2>
+              <div class="acciones">
+                <a href="/propiedad/editar/<%= a._id %>" class="btn editar">Editar</a>
+                <form action="/propiedad/borrar/<%= a._id %>" class="form-eliminar" method="POST">
+                  <button type="submit" class="btn eliminar">Dar de baja</button>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </main>
+
+  <script>
+
+    document.querySelectorAll('.form-eliminar').forEach(form => {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault(); // Evita el envío inmediato
+
+          Swal.fire({
+          title: '¿Estás seguro?',
+          text: "¡No podrás revertir esto!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, eliminarlo'
+          }).then((result) => {
+          if (result.isConfirmed) {
+            form.submit(); // Solo se envía si confirma
+          }
+        });
+      });
+    });
+  </script>
+
+  <% include componentes/footer %>
+</body>
+</html>

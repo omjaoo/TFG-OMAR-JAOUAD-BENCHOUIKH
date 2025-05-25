@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.6/lottie.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/stylePanel.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/casa.png">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel</title>
+</head>
+
+<body>
+
+    <% include componentes/header %>
+
+        <div class="panel-header">
+            <h1 class="titulo-panel">Mi Panel de Usuario</h1>
+            
+                <button type="submit" id="darBaja" class="btn btn-baja">
+                    Dar de baja mi cuenta
+                </button>
+ 
+        </div>
+
+        <main>
+
+            <article class="datos-usuario">
+                <h2>Tus datos</h2>
+                <p>Estos datos solo se mostraran cuando contactes con anunciantes o publiques un anuncio en Espacio
+                    Ideal.
+                </p>
+                <div class="contenido-usuario">
+                    <div class="div-img">
+                        <% if(!usuario.foto){ %>
+                            <img id="preview" class="perfil-img" src="/images/usuario.png">
+                            <%}else { %>
+                                <img id="preview" class="perfil-img" src=<%=usuario.foto %>>
+                                <%} %>
+
+                                    <% if(editarDatos===true){ %>
+                                        <form class="subida-foto" action="/foto" method="POST"
+                                            enctype="multipart/form-data">
+
+                                            <h5>Una imagen tuya ayuda a que tu perfil resulte más cercano y auténtico
+                                                para
+                                                quienes lo visitan.</h5>
+
+                                            <div class="file-upload">
+                                                <label for="archivo" class="boton-subida">Subir una imagen</label>
+                                                <input type="file" id="archivo" name="avatar" accept="image/*" required>
+                                                <span id="nombre-archivo">Ningún archivo seleccionado</span>
+                                            </div>
+
+                                            <script>
+                                                const inputArchivo = document.getElementById('archivo');
+                                                const nombreArchivo = document.getElementById('nombre-archivo');
+
+                                                inputArchivo.addEventListener('change', () => {
+                                                    const nombre = inputArchivo.files[0]?.name || "Ningún archivo seleccionado";
+                                                    nombreArchivo.textContent = nombre;
+                                                });
+                                            </script>
+
+                                            <input class="subirFoto" type="submit" value="Subir foto">
+
+                                        </form>
+                                        <% } %>
+
+                    </div>
+
+                    <% if(editarDatos===null){ %>
+
+                        <div class="datos">
+                            <h3>Nombre: <%= usuario.nombre %>
+                            </h3>
+                            <p> Telefono: <%= usuario.telefono || 'sin telefono' %>
+                            </p>
+                            <p>Email: <%= usuario.email %>
+                            </p>
+                        </div>
+
+                        <% } %>
+
+                            <% if(editarDatos===true){ %>
+
+                                <form class="form-guardarDatos" action="/perfil/guardarDatos" method="post">
+
+                                    <label for="">Nombre:</label>
+                                    <input type="text" name="nombreActualizado" value="<%= usuario.nombre %>"
+                                        id="nombreActualizado">
+
+                                    <label for="">Teléfono:</label>
+                                    <div>
+                                        <select name="prefijo" id="prefijo">
+                                            <!-- Europa -->
+                                            <option value="+34" selected>🇪🇸 +34 (España)</option>
+                                            <option value="+351">🇵🇹 +351 (Portugal)</option>
+                                            <option value="+33">🇫🇷 +33 (Francia)</option>
+                                            <option value="+39">🇮🇹 +39 (Italia)</option>
+                                            <option value="+49">🇩🇪 +49 (Alemania)</option>
+                                            <option value="+41">🇨🇭 +41 (Suiza)</option>
+                                            <option value="+43">🇦🇹 +43 (Austria)</option>
+                                            <option value="+31">🇳🇱 +31 (Países Bajos)</option>
+                                            <option value="+32">🇧🇪 +32 (Bélgica)</option>
+                                            <option value="+44">🇬🇧 +44 (Reino Unido)</option>
+                                            <option value="+353">🇮🇪 +353 (Irlanda)</option>
+                                            <option value="+420">🇨🇿 +420 (Chequia)</option>
+                                            <option value="+48">🇵🇱 +48 (Polonia)</option>
+                                            <option value="+45">🇩🇰 +45 (Dinamarca)</option>
+                                            <option value="+46">🇸🇪 +46 (Suecia)</option>
+                                            <option value="+47">🇳🇴 +47 (Noruega)</option>
+                                            <option value="+358">🇫🇮 +358 (Finlandia)</option>
+                                            <option value="+375">🇧🇾 +375 (Bielorrusia)</option>
+                                            <option value="+380">🇺🇦 +380 (Ucrania)</option>
+
+                                            <!-- América -->
+                                            <option value="+1">🇺🇸/🇨🇦 +1 (EE. UU. / Canadá)</option>
+                                            <option value="+52">🇲🇽 +52 (México)</option>
+                                            <option value="+57">🇨🇴 +57 (Colombia)</option>
+                                            <option value="+55">🇧🇷 +55 (Brasil)</option>
+                                            <option value="+56">🇨🇱 +56 (Chile)</option>
+                                            <option value="+54">🇦🇷 +54 (Argentina)</option>
+                                            <option value="+51">🇵🇪 +51 (Perú)</option>
+                                            <option value="+58">🇻🇪 +58 (Venezuela)</option>
+                                            <option value="+503">🇸🇻 +503 (El Salvador)</option>
+                                            <option value="+507">🇵🇦 +507 (Panamá)</option>
+                                            <option value="+506">🇨🇷 +506 (Costa Rica)</option>
+                                            <option value="+598">🇺🇾 +598 (Uruguay)</option>
+
+                                            <!-- Asia / Oceanía -->
+                                            <option value="+81">🇯🇵 +81 (Japón)</option>
+                                            <option value="+82">🇰🇷 +82 (Corea del Sur)</option>
+                                            <option value="+86">🇨🇳 +86 (China)</option>
+                                            <option value="+91">🇮🇳 +91 (India)</option>
+                                            <option value="+62">🇮🇩 +62 (Indonesia)</option>
+                                            <option value="+63">🇵🇭 +63 (Filipinas)</option>
+                                            <option value="+65">🇸🇬 +65 (Singapur)</option>
+                                            <option value="+60">🇲🇾 +60 (Malasia)</option>
+                                            <option value="+971">🇦🇪 +971 (E.A.U.)</option>
+                                            <option value="+966">🇸🇦 +966 (Arabia Saudí)</option>
+                                            <option value="+972">🇮🇱 +972 (Israel)</option>
+                                            <option value="+61">🇦🇺 +61 (Australia)</option>
+                                            <option value="+64">🇳🇿 +64 (Nueva Zelanda)</option>
+                                        </select>
+
+                                        <input type="tel" name="telefono" id="telefono" placeholder="Número de teléfono"
+                                            maxlength="15" required>
+                                    </div>
+
+                                    <input type="submit" value="Guardar Cambios">
+
+                                </form>
+                                <%}%>
+                </div>
+                <% if(editarDatos===null){ %>
+
+                    <div class="div-button">
+                        <a class="btn" class="botonDatos" href="/perfil/editarDatos">
+                            Editar Datos
+                        </a>
+                    </div>
+                    <% } %>
+
+
+
+            </article>
+
+            <article class="perfil-inquilino">
+                <h2>Tu perfil como inquilino</h2>
+                <% if(tieneInfo===undefined){ %>
+
+
+                    <div id="tio"></div>
+
+                    <form class="crear-perfil-inquilino" action="/perfil/inquilino" method="post">
+
+                        <input id="perfilInquilino" class="botonPerfil" type="submit"
+                            value="Crea tu perfil de Inquilino">
+                    </form>
+                    <% }else if(tieneInfo===false){ %>
+
+                        <!-- Aqui mi variable debera entrar si es false tiene Info y cargara el formulario para que el usuairo lo rellene -->
+
+                        <form class="rellenar-datos-inquilino" action="/perfil/guardarPerfilInquilino" method="post">
+
+                            <label for="">¿Personas que van a vivir en esta propiedad?</label>
+                            <input type="number" name="personas"  value="<%= usuario.perfilInquilino?.personasVivienda ?? '' %>" placeholder="1 persona">
+
+                            <label for="">¿Tienen Mascota?</label>
+                            <label for="">
+                                Si
+                                <input name="mascota" type="radio" value="true" placeholder="Si">
+                            </label>
+                            <label for="">
+                                No
+                                <input name="mascota" type="radio" value="false" placeholder="No" required>
+                            </label>
+
+
+                            <label for="">¿Cuando tiene pensando mudarse?</label>
+                            <label for="">
+                                Lo antes posible <input name="mudanza" value="lo_antes_posible" type="radio" required>
+                            </label>
+                            <label for="">
+                                Tengo flexibilidad <input name="mudanza" value="flexibilidad" type="radio">
+                            </label>
+                            <label for="">
+                                Fecha exacta
+                                <input name="mudanza" type="radio" id="fechaClick">
+                                <div id="divFecha"></div>
+                            </label>
+
+                            <div class="input-ingresos">
+                                <label for="">Ingresos Mensuales</label>
+                                <input type="" name="ingresos" value="<%= usuario.perfilInquilino?.IngresosMensuales ?? ''  %>" placeholder="&#8364;/mes" />
+
+                            </div>
+                            <label for="">Carta de presentacion</label>
+                            <textarea class="cartaPresentacion" rows="7" cols="50" type="text" name="carta"
+                                id="cartaPresentacion">
+                                <%= usuario.perfilInquilino?.cartaPresentacion ?? ''  %>
+                            </textarea>
+
+                            <input type="submit" value="Guardar Perfil">
+                        </form>
+
+                        <% } %>
+
+                            <% if( tieneInfo===true){ %>
+
+                                <ul class="contenido-ul">
+
+                                    <li>
+                                        <strong>Personas en la vivienda:</strong>
+                                        <%= usuario.perfilInquilino.personasVivienda %>
+                                    </li>
+
+                                    <li>
+                                        <strong>¿Tienen mascota?:</strong>
+                                        <%= usuario.perfilInquilino.tieneMascota? 'Sí' : 'No' %>
+                                    </li>
+
+                                    <li>
+                                        <strong>Fecha de mudanza:</strong>
+                                        <%= usuario.perfilInquilino.fechaMudanza.replace(/_/g,' ') %>
+                                    </li>
+
+                                    <li>
+                                        <strong>Ingresos mensuales:</strong>
+                                        <%= usuario.perfilInquilino.IngresosMensuales %>
+                                    </li>
+
+                                    <li>
+                                        <strong>Carta de presentación:</strong>
+                                        <%= usuario.perfilInquilino.cartaPresentacion %>
+                                    </li>
+
+                                </ul>
+
+                                <form action="/perfil/inquilino" method="post">
+                                    <input type="submit" class="btn" value="Editar datos">
+                                </form>
+
+                                <% }%>
+
+
+            </article>
+        </main>
+
+        <% include componentes/footer %>
+
+            <script defer src="/javascripts/perfilInquilino.js"></script>
+            <script defer src="/javascripts/lottiePerfil.js"></script>
+            <script defer src="/javascripts/bajaUsuario.js"></script>
+</body>
+
+</html>

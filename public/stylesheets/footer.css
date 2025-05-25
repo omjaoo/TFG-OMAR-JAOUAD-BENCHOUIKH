@@ -28,6 +28,7 @@
 .footer-links,
 .footer-info {
     min-width: 200px;
+    text-align: center;
 }
   
 .footer-links h4,

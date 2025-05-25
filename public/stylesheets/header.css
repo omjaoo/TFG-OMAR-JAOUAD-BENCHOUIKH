@@ -1,216 +1,178 @@
-/* MENU */
-nav{
-    display: flex;
-    margin: 0;
-    max-width: 100%;
-    margin-top: 0px;
-    
+header {
+  width: 100%;
+  padding: 0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 25px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 999999;
 }
-nav ul{
-    display: flex;
-    width: 65%;
-    justify-content: flex-end;
-    gap: 60px;
-    padding: 0;
-    margin-top: 40px;
+
+
+.div-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 10px 20px;
+  background: #fff;
 }
-nav ul li{
-    display: flex;
-    flex-direction: row;
-    height: 30px;
-    border: 1px solid grey;
-    border-radius: 20px;
-    padding: 9px;
-    transition: background-color 0.5s ease-in-out;
+
+
+.nav-links li a {
+  font-weight: 700;      
+  font-size: 1rem;      
+  color: #333;
+  text-transform: uppercase; 
 }
-nav ul li a{
+
+
+.menu {
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.logo {
+  height: 50px;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 0.5rem;
+  color: #333;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.nav-links li a:hover {
+  color: #4a90e2;
+}
+
+.user-foto {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.menu a{
+	color:white;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 0 10px;
+	transition: 0.4s;
+}
+
+.mostrar-menu, .ocultar-menu{
+	font-size: 30px;
+	cursor: pointer;
+	display: none;
+	transition: 0.4s;
+  right: 20px;
+  position: absolute;
+  margin-top: 10px;
+  color: black;
+}
+
+.mostrar-menu{
+	order:1;
+}
+
+.menu a:hover, 
+.mostrar-menu:hover, 
+.ocultar-menu:hover{
+	color: #4a90e2;
+}
+
+#check{
+	display: none;
+}
+
+@media(max-width: 768px){
+	.mostrar-menu,
+	.ocultar-menu{
+		display: block;
+	}
+  
+  .nav-links li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f1f1f1f1;
     text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-family: Monte;
-    margin-left: 7px;
-    max-width: 300px;
-}
+    width: 100%;
+  }
 
-nav ul li:hover{
-    background-color: #908FE6;
+  .nav-links li a:hover {
+    color: #fff;
+  }
+
+  .nav-links li {
+    width: 100%;
+    transition: background 1s ease-in-out;
+
+  }
+
+  .nav-links li:hover {
+    color: #fff;
+    background: rgba(145, 141, 141, 0.8);
+    padding: 5px;
+  }
+
+	.menu{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    right: -100%;
+    top: 0;
+    text-align: center;
+    background: #4a90e2;
+    padding: 100px 0;
+    transition: right 0.8s;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+          
+  }
+  .menu ul{
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     
-}
+  }
 
-/*LOGO MENU*/
-.logo{
-    max-width: 200px;
-    height: 200px;
-    margin-top: -40px;
-    margin-left: 150px;
-}
-
-nav ul li.acceso{
-    display: none;
-}
-
-@media (max-width: 1180px){
-
-    nav{
-        justify-content: center;
-        gap: 27px;
-    }
-    .logo{
-        margin-left: -50px;
-        margin-top: -65px;
-        width: 250px;
-        height: 250px;
-    }
-    nav ul li.anuncio{
-        display: none !important;
-    }
+  .ocultar-menu{
+    position: absolute;
+    top: 40px;
+    right: 40px;
+  }
+  #check:checked ~ .menu{
+    right: 0;
+  }
 
 }
-
-@media (max-width: 1027px){
-
-    nav{
-        justify-content: center;
-        gap: 27px;
-    }
-
-    .logo{
-        margin-left: -50px;
-        margin-top: -65px;
-        width: 250px;
-        height: 250px;
-    }
-
-    nav ul li a{
-        font-size: 20px;
-        margin-top: 3px;
-    }
+/* Pantallas pequeñas (≥ 576px) */
+@media (min-width: 576px) {
+  .header-logo {
+    width: 150px;
+  }
 }
-
-
-@media (max-width: 769px){
-
-    nav ul{
-        justify-content: center;
-        
-    }
-
-    nav ul li{
-        margin-left: 150px;
-    }
-
-    nav ul li.anuncio{
-        display: none !important;
-    }
-
-    .logo{
-        margin-left: 10px;
-    }
-
-    nav ul li a{
-        font-size: 10px;
-        margin-top: 9px;
-        width: 150px;
-    }
-}
-
-@media (max-width: 427px){
-
-    nav{
-        max-width: 100%;
-        justify-content: center;
-    }
-
-    nav ul{
-        display: flex;
-        justify-content: center;
-    }
-
-    nav ul li.anuncio{
-        display: none !important;
-    }
-
-    nav ul li{
-        margin: 0;
-    }
-
-    .logo{
-        margin-left: 0px;
-        width: 170px;
-        height: 170px;
-        margin-top: -20px;
-    }
-
-    nav ul li a{
-        font-size: 10px;
-        margin-top: 9px;
-        width: 150px;
-    }
-    
-}
-
-@media (max-width: 377px){
-
-    nav ul{
-        display: flex;
-        justify-content: center;
-    }
-
-    nav ul li.anuncio{
-        display: none !important;
-    }
-
-    .logo{
-        margin-left: 0px;
-        margin-top: -25px;
-    }
-
-    nav ul li.iniciar a{
-        font-size: 7px;
-        margin-right: 20px;
-        margin-top: 12px;
-        width: 90px;
-    }
-
-    nav ul li.iniciar{
-        padding: 5px;
-    }
-
-}
-
-@media (max-width: 325px){
-
-
-    nav ul{
-        display: flex;
-        justify-content: center;
-    }
-
-    .iniciar{
-        display: none !important;
-    }
-
-    nav ul li.anuncio{
-        display: none !important;
-    }
-
-    .logo{
-        margin-left: 0px;
-        width: 180px;
-    }
-
-    nav ul li.acceso a{
-        font-size: 8px;
-        margin-right: 20px;
-        width: 20px;
-    }
-
-    nav ul li.acceso{
-        padding: 3px;
-        display: block;
-        display: flex;
-        justify-content: center;
-    }
-
-}
-

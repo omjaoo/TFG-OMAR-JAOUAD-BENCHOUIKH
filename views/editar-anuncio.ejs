@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/casa.png">  
+    <link rel="stylesheet" href="/stylesheets/editaranuncio.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <title>Editar anuncio</title>
+</head>
+<body>
+    <% include componentes/header %>
+    <div class="form-container">
+    <h1>Editar Anuncio</h1>
+
+    <form action="/propiedad/actualizar-propiedad/<%= propiedad._id %> " method="POST" enctype="multipart/form-data">
+
+      <!-- Dirección (bloqueado) -->
+      <div class="form-group">
+        <label>Dirección</label>
+        <input type="text" value="<%= propiedad.direccion  %>" readonly />
+      </div>
+
+      <!-- Tipo de propiedad (bloqueado) -->
+      <div class="form-group">
+        <label>Tipo de propiedad</label>
+        <input type="text" value="<%= propiedad.tipo  %>" readonly />
+      </div>
+
+      <!-- Precio -->
+      <div class="form-group">
+        <label>Precio (€)</label>
+        <input type="number" name="precio" value="<%= propiedad.precio  %>" required />
+      </div>
+
+      <!-- Habitaciones -->
+      <div class="form-group">
+        <label>Habitaciones</label>
+        <input type="number" name="habitaciones" value="<%= propiedad.numero_habitaciones  %>" required />
+      </div>
+
+      <!-- Baños -->
+      <div class="form-group">
+        <label>Baños</label>
+        <input type="number" name="numero_ba" value="<%= propiedad.numero_baños  %>" required />
+      </div>
+
+      <!-- Superficie -->
+      <div class="form-group">
+        <label>Superficie (m²)</label>
+        <input type="number" name="superficie" value="<%= propiedad.superficie  %>" required />
+      </div>
+
+      <!-- Descripción -->
+      <div class="form-group">
+        <label>Descripción</label>
+        <textarea name="descripcion" rows="5" required><%= propiedad.descripcion %></textarea>
+      </div>
+
+      <!-- Fotos -->
+      <div class="form-group">
+        <label>Fotos</label>
+        <input type="file" name="fotos" multiple accept="image/*" />
+      </div>
+
+      <!-- Botón -->
+      <div class="form-actions">
+        <button type="submit">Guardar Cambios</button>
+      </div>
+    </form>
+  </div>
+  <% include componentes/footer %>
+
+
+</body>
+</html>

@@ -16,11 +16,7 @@ loginRouter.get("/google/callback", passport.authenticate("auth-google", {
     const usuario = req.user; // El usuario que ha iniciado sesión
 
     // Aquí pintamos directamente la información
-    res.send(`
-        <h1>Bienvenido, ${usuario.nombre}</h1>"
-        "<p>Email: ${usuario.email}</p>",
-        "<p>Teléfono: ${usuario.telefono ? usuario.telefono : "No registrado"}</p>`
-    );
+    res.redirect('/users/login');
 });
 
 

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/styleResultados.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/casa.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="/stylesheets/header.css">
+  <link rel="stylesheet" href="/stylesheets/pantallaCarga.css">
+  <link rel="stylesheet" href="/stylesheets/footer.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <% include componentes/header %>
+
+    <!-- formulario para filtrar por num baños habitaciones precio o superficie -->
+
+    <div class="header-resultados">
+      <h1 class="titulo">Propiedades encontradas</h1>
+      <!-- Botón para crear alerta de búsqueda -->
+        
+      <!-- <div id="animacion"></div> -->
+          <div id="contact-button" ></div>
+
+            <% if(inicioSesion){ %>
+
+              <button type="button"  id="crearAlerta" class="btn-alerta" >
+                <%= alerta
+                  ? 'Eliminar alerta para esta busqueda'
+                  : 'Crear alerta para esta busqueda'
+                %>
+              </button>
+
+              <% }else{ %>
+                <a href="/users/login" style="text-decoration: none; width: 250px; text-align: center; margin-top: 18px;" class="btn-alerta">
+                  Inicia sesión para crear alerta
+                </a>
+              <% } %>
+    </div>
+
+    <main class="contenedor-principal">
+
+      <section class="filtro-container">
+        <form id="filtroForm">
+          <div class="filtro-zona zona1">
+            <!-- Bloque: selección numérica -->
+            <div class="filtro-grupo radios">
+              <div class="filtro-titulo"><i class="fa-solid fa-bed"></i> <span>Habitaciones</span></div>
+              <div class="filtro-radios">
+                <input type="radio" id="h1" name="habitaciones" value="1">
+                <label for="h1">1</label>
+                <input type="radio" id="h2" name="habitaciones" value="2">
+                <label for="h2">2</label>
+                <input type="radio" id="h3" name="habitaciones" value="3" checked>
+                <label for="h3">3+</label>
+              </div>
+            </div>
+            <div class="filtro-grupo radios">
+              <div class="filtro-titulo"><i class="fa-solid fa-bath"></i> <span>Baños</span></div>
+              <div class="filtro-radios">
+                <input type="radio" id="b1" name="banos" value="1">
+                <label for="b1">1</label>
+                <input type="radio" id="b2" name="banos" value="2">
+                <label for="b2">2</label>
+                <input type="radio" id="b3" name="banos" value="3" checked>
+                <label for="b3">3+</label>
+              </div>
+            </div>
+          </div>
+          <div class="filtro-zona zona2">
+            <!-- Bloque: rangos y selectores -->
+            <div class="filtro-grupo rango">
+              <label for="superficie">Superficie (m²)</label>
+              <input type="range" id="superficie" name="superficie" min="0" max="500" step="1" value="0">
+              <input type="number" id="superficieInput" min="0" max="500" step="1" value="0" class="numero-input">
+              <span id="superficieVal">0 m²</span>
+            </div>
+            <div class="filtro-grupo rango">
+              <label for="precio">Precio (€)</label>
+              <input type="range" id="precio" name="precio" min="0" max="1000000" step="1" value="0">
+              <input type="number" id="precioInput" min="0" max="1000000" step="1" value="0" class="numero-input">
+              <span id="precioVal">0 €</span>
+            </div>
+            <div class="filtro-grupo select-group">
+              <label for="fecha">Publicado</label>
+              <select id="fecha" name="fecha">
+                <option value="">Cualquiera</option>
+                <option value="24h">Últimas 24h</option>
+                <option value="semana">Última semana</option>
+                <option value="mes">Último mes</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit"  class="btn-filtrar">Filtrar</button>
+        </form>
+      </section> 
+      
+      <input type="hidden" id="tipoPropiedad" value="<%= inputHidden.tipoPropiedad %>">
+      <input type="hidden" id="direccion" value="<%= inputHidden.direccion %>">
+      <input type="hidden" id="operacion" value="<%= inputHidden.operacion %>">
+      
+
+      <div class="contenedor-propiedades">
+        <% propiedades.forEach(prop=> { %>
+          <div class="tarjeta-propiedad">
+            <img src="<%= prop.imagenes[0] %>" alt="Imagen propiedad" class="imagen-propiedad" />
+            <div class="info-propiedad">
+              <h2 id="tipoOperacion">
+                <%= prop.tipo.toUpperCase() %> en <%= prop.direccion %>
+              </h2>
+              <p class="precio">€ <%= prop.precio.toLocaleString('es-ES') %>
+              </p>
+              <p class="fecha-publicacion">
+                Publicado el <%= new Date(prop.fecha_publicacion).toLocaleDateString('es-ES', { day: 'numeric' ,
+                  month: 'long' , year: 'numeric' }) %>
+              </p>
+              <p>
+                <%= prop.numero_habitaciones %> habitaciones • <%= prop.numero_baños %> baños • <%= prop.superficie %>
+                      m²
+              </p>
+              <p class="descripcion">
+                <%= prop.descripcion.slice(0, 120) %>...
+              </p>
+              <div class="like-wrapper <%= prop.likes.includes(usuarioId) ? 'liked' : '' %>" data-id="<%= prop._id %>">
+                <svg class="icono-like" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 21s-6.5-4.8-9.5-8.2C.6 9.2 2.5 5 6 5c1.8 0 3.4 1 4.1 2.4C11.6 6 13.2 5 15 5c3.5 0 5.4 4.2 3.5 7.8C18.5 16.2 12 21 12 21z"
+                    stroke="#e84118" stroke-width="2" fill="transparent" />
+                </svg>
+              </div>
+              <a href="/propiedad/detalles/<%= prop._id %>" data-id="<%= prop._id %>" class="boton-ver">Ver detalle</a>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+    </main>
+
+
+
+    <% include componentes/footer %>
+    <script defer src="/javascripts/like.js"></script>
+    <script defer src="/javascripts/filtrado.js"></script>
+    <script defer src="/javascripts/propiedadDetalle.js"></script>
+    <script defer src="/javascripts/filtradoPropiedades.js"></script>
+    <script defer src="/javascripts/crearAlertasPropiedad.js"></script>
+    
+
+</body>
+
+</html>

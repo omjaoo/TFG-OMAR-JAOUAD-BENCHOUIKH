@@ -36,6 +36,7 @@ passport.use("auth-google",new GoogleStrategy({
         nombre: profile.name.givenName,
         apellidos: profile.name.familyName || '',
         email: googleEmail,
+        foto: "",
         telefono: ''
       })
 

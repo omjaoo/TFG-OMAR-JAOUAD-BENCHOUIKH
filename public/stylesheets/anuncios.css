@@ -1,0 +1,184 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+.contenedor-anuncios {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.no-anuncios {
+  text-align: center;
+  color: #666;
+}
+
+.btn-publicar {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.grid-anuncios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card-anuncio {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-anuncio img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-anuncio .contenido {
+  padding: 1rem;
+}
+
+.card-anuncio h2 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.card-anuncio p {
+  color: #555;
+  margin: 0.3rem 0;
+}
+
+.acciones {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1rem;
+  padding-top: 0;
+  margin-top: 50px;
+}
+
+
+.btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn.editar {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.btn.eliminar {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px;
+}
+/* === Estado vacío animado === */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  background-color: #F9FAFB;
+  border: 2px dashed #CBD5E0;
+  border-radius: 1rem;
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.megaphone-icon {
+  fill: #BEE3F8;
+  stroke: #2A4365;
+  stroke-width: 2px;
+  animation: wiggle 2s infinite ease-in-out;
+}
+
+.plus-btn {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #FED7D7;
+  color: #2A4365;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 1.25rem;
+  animation: popIn 0.6s ease-out;
+}
+
+.empty-state__text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #4A5568;
+  margin: 1.5rem 0;
+}
+
+.btn-publicar {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  background-color: #3182CE;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes wiggle {
+  0%,100% { transform: rotate(0deg); }
+  25%     { transform: rotate(2deg); }
+  75%     { transform: rotate(-2deg); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50%      { transform: scale(1.05); }
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/casa.png">
+  <link rel="stylesheet" href="/stylesheets/header.css">
+  <link rel="stylesheet" href="/stylesheets/stylesubirAnuncio.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="/stylesheets/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Publicar Propiedad | Mi Espacio Ideal</title>
+  <style>
+    
+  </style>
+</head>
+
+<body>
+  
+  <% include componentes/header %>
+  <main>
+    <h1>Publica tu anuncio con Mi Espacio Ideal</h1>
+    <h4>Selecciona el tipo de anuncio que quieres publicar. Recuerda que la tipología no la podrás cambiar una vez publicado.</h4>
+
+    <form action="/propiedad/propiedadPublicar" method="post" class="tipo-anuncio-form" id="formanuncio" enctype="multipart/form-data">
+      <h3>¿Qué anuncio quieres publicar?</h3>
+
+      <div class="div-tipo-propiedad">
+        <label for="casa" class="opcion">
+          <input type="radio" id="casa" name="tipo" value="casa" checked>
+          CASA
+        </label>
+        <label for="chalet" class="opcion">
+          <input type="radio" id="chalet" name="tipo" value="chalet">
+          CHALET
+        </label>
+        <label for="piso" class="opcion">
+          <input type="radio" id="piso" name="tipo" value="piso">
+          PISO
+        </label>
+        <label for="condominio" class="opcion">
+          <input type="radio" id="condominio" name="tipo" value="condominio">
+          CONDOMINIO
+        </label>
+      </div>
+
+      <label>¿Operación?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="operacion" value="venta"> Venta</label>
+        <label><input type="radio" name="operacion" value="alquiler"> Alquiler</label>
+      </div>
+
+      <label for="localidad">Localidad</label>
+      <input type="text" name="localidad">
+
+      <label for="nombreVia">Nombre de la vía</label>
+      <input type="text" name="nombreVia">
+
+      <div class="orga-inputs-label">
+
+        <label for="numeroVia">Número de la vía</label>
+
+        <label for="superficie">Superficie</label>
+        
+        <label for="numero_habitaciones">Número Habitaciones</label>
+
+        <label for="numero_baños">Número Baños</label>
+        
+
+      </div>
+
+      
+
+      <div class="orga-inputs">
+
+        <input type="number" name="numeroVia" placeholder="Nº Via">
+
+        <input type="number" name="superficie" placeholder="m/2" >
+
+        <input type="number" name="numero_habitaciones" placeholder="Nº Habitaciones" max="10">
+
+        <input type="number" name="numBa" placeholder="Nº Baños" max="10">
+
+      </div>
+      
+      <div id="precioPropiedad"></div>
+      
+
+      
+
+      <div id="formularioTipo"></div>
+      
+      <label for="descripcion">Descripción</label>
+      <textarea name="descripcion" id="" style="resize: none; height: 200px;"></textarea>
+
+      <div class="image-upload">
+        <label for="imagenes" style="margin-bottom: 30px;">Selecciona hasta 50 imágenes</label>
+        <input type="file" id="imagenes" name="imagenes" accept="image/*" multiple>
+        <div id="preview"></div>
+      </div>
+
+
+      <input type="submit" id="enviado" value="Seguir">
+    </form>
+  </main>
+
+    <!-- Overlay de éxito -->
+  <div id="overlay-exito" class="overlay-exito" style="display: none;">
+    <div class="overlay-contenido">
+      <img src="/images/logoMiespacioideal.png" alt="Logo" class="logo-exito">
+      <h2>¡Anuncio subido con éxito!</h2>
+      <p>Gracias por confiar en <strong>Mi Espacio Ideal</strong>.</p>
+    </div>
+  </div>
+
+  <!-- Overlay de error -->
+  <div id="overlay-error" class="overlay-exito" style="display: none; background-color: rgba(255, 0, 0, 0.3);">
+    <div class="overlay-contenido">
+      <h2>¡Faltan datos!</h2>
+      <p>Por favor, completa todos los campos obligatorios antes de continuar.</p>
+    </div>
+  </div>
+
+
+
+  <script defer src="/javascripts/caracteristicasPropiedad.js"></script>
+  <script defer src="/javascripts/fotospropiedad.js"></script>
+  <script defer src="/javascripts/mensajeExito.js"></script>
+  <% include componentes/footer %>
+</body>
+
+</html>

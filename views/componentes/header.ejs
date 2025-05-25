@@ -1,19 +1,42 @@
 <header>
-    <nav>
-        <img class="logo" src="/images/logoMiespacioideal.png" alt="">
-      <ul>
-        <li class="anuncio">
-          <img src="/images/publicidad-digital.png" alt="" width="30px" height="30px">
-          <a href="">Pon tu primer Anuncio</a>
-        </li>
-        <li class="iniciar">
-          <img src="/images/usuario.png" alt="" width="30px" height="30px">
-          <a href="/users/login">Iniciar Sesión/Registrarse</a>
-        </li>
-        <li class="acceso">
-          <img src="/images/usuario.png" alt="" width="30px" height="30px">
-          <a href="">Acceso</a>
-        </li>
+
+  <div class="div-cabecera">
+    <a href="/" class="logo-link">
+      <img class="logo" src="/images/logoMiespacioideal.png" alt="EspacioIdeal Logo">
+    </a>
+    <input type="checkbox" id="check" name="">
+    <label for="check" class="mostrar-menu">&#8801</label>
+
+    <nav class="menu">
+
+      <ul class="nav-links">
+        <% if (estado===true) { %>
+          <li><a href="/users/subiranuncio"><i class="fa-solid fa-bullhorn"></i> Publica tu anuncio</a></li>
+          <li><a href="/users/favoritos"><i class="fa-solid fa-heart"></i> Favoritos</a></li>
+          <li><a href="/users/misanuncios"><i class="fa-solid fa-clipboard-list"></i> Mis Anuncios</a></li>
+          <li>
+          
+            <a href="/perfil/panel"> 
+              <img src="<%= usuario.foto || '/images/usuario.png' %>" alt="Foto Usuario" class="user-foto">
+              Bienvenido, <%=  usuario.nombre  %>
+            </a>
+          </li>
+          <li>
+            <a href="/users/logout"><i class="fa fa-power-off"></i>
+
+            </a></li>
+
+          </li>
+          <% } else { %>
+            <li><a href="/users/subiranuncio"><i class="fa-solid fa-bullhorn"></i> Publica tu Anuncio</a></li>
+            <li><a href="/users/login"><i class="fa-solid fa-user"></i> Iniciar Sesión</a></li>
+            <% } %>
       </ul>
+
+      <label for="check" class="ocultar-menu">
+        &#215
+      </label>
     </nav>
+  </div>
+
 </header>
