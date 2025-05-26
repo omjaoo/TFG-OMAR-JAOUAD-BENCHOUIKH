@@ -22,7 +22,8 @@ main{
     margin: 30px auto;
     border: 2px solid transparent;
     border-radius: 7px;
-    width: 460px;
+    width: 100%;  
+    max-width: 420px;
     height: auto;
     box-shadow: 0px 4px 12px rgb(0,0,0, 0.1);
     padding-bottom: 20px;
@@ -50,14 +51,16 @@ form > label{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
     margin-left: 30px;
-    width: 330px;
+    width: 100%;
+    max-width: 330px;
     margin-top: 0px;
 }
 
 form > input[type="email"]{
     padding: 15px;
     margin: 0 auto;
-    width: 330px;
+    width: 100%;
+    max-width: 330px;
 }
 
 .titulo-inicio{
@@ -72,7 +75,8 @@ form{
     display: flex;
     margin: 0 auto;
     flex-direction: column;
-    width: 420px;
+    width: 100%;
+    max-width: 420px;
     gap: 20px;
 }
 
@@ -84,7 +88,8 @@ form input[type="submit"]{
     color: whitesmoke;
     font-size: 17px;
     cursor: pointer;
-    width: 370px;
+    width: 100%;
+    max-width: 370px;
     margin: 0 auto;
     transform: opacity 0.5s ease;
 }
@@ -109,7 +114,8 @@ form input[type="submit"]:hover{
     border:1px solid #dcdcdc;
     border-radius:4px;
     padding:8px 14px;
-    width: 330px;
+    width: 100%;
+    max-width: 330px;
     margin: 0 auto;
     margin-top: -20px;
     margin-bottom: 30px;
@@ -170,7 +176,8 @@ form input[type="submit"]:hover{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
     margin-left: 30px;
-    width: 330px;
+    width: 100%;
+    max-width: 330px;
     margin-top: 0px;
 }
 .div-section > .input_numero{
@@ -187,7 +194,8 @@ form input[type="submit"]:hover{
 .codigo-section > input[type="number"]{
     padding: 15px;
     margin: 0 auto;
-    width: 130px;
+    width: 100%;
+    max-width: 130px;
 }
 
 
@@ -196,22 +204,53 @@ form input[type="submit"]:hover{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
     margin-left: 30px;
-    width: 330px;
+    width: 100%;
+    max-width: 330px;
     margin-top: 0px;
 }
 
 .registrar-section > input[type="text"]{
     padding: 15px;
     margin: 0 auto;
-    width: 330px;
+    width: 100%;
+    max-width: 330px;
 }
 
 .registrar-section > input[type="text"]{
     padding: 15px;
     margin: 0 auto;
-    width: 330px;
+    width: 100%;
+    max-width: 330px;
 }
 
+/*  Móvil (≤ 800px)  */
+@media (max-width: 800px) {
+  
+    main{
+        margin-left: 15px;
+        margin-top: 40px;
+    }
+
+  .div-section{
+    width: 220px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+  .div-section > .input_numero{
+    width: 28px;
+    height: 30px;
+    text-align: center;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-top:10px;
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+  
+}
 
 .registrar-section > label{
     font-size: 20px;
@@ -227,6 +266,7 @@ form input[type="submit"]:hover{
     margin: 0 auto;
     width: 330px;
 }
+
 
 
 /*Mensajes informativos de errores, este por ejemplo de emails que no coinciden a la hora de registrarse.*/

@@ -498,7 +498,8 @@ ul li {
   /* Formularios a una columna */
   .form-guardarDatos,
   .rellenar-datos-inquilino {
-    padding: 1rem;
+    margin-right:20px ;
+    margin-bottom: 20px;
   }
 
   .form-guardarDatos div {
@@ -529,5 +530,94 @@ ul li {
   select,
   textarea {
     font-size: 0.9rem;
+  }
+}
+
+/* ==============================
+   Tablet (≥768px y ≤1024px)
+   ============================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Contenedor de datos de usuario en dos columnas */
+  .datos-usuario .contenido-usuario {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  /* Columna de la imagen y subida */
+  .datos-usuario .div-img {
+    flex: 1 1 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .datos-usuario .perfil-img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .datos-usuario .subida-foto {
+    width: 100%;
+    max-width: 250px;
+  }
+  .datos-usuario .file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .datos-usuario .file-upload .boton-subida {
+    display: block;
+    text-align: center;
+    padding: 0.75rem;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .datos-usuario #nombre-archivo {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .datos-usuario .subirFoto {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  /* Columna del formulario de datos */
+  .datos-usuario .form-guardarDatos {
+    flex: 1 1 55%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .datos-usuario .form-guardarDatos label {
+    font-size: 1.1rem;
+  }
+  .datos-usuario .form-guardarDatos input[type="text"],
+  .datos-usuario .form-guardarDatos input[type="tel"] {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  /* Teléfono: selector y campo en una línea */
+  .datos-usuario .form-guardarDatos select,
+  .datos-usuario .form-guardarDatos input[type="tel"] {
+    font-size: 1rem;
+  }
+  .datos-usuario .form-guardarDatos select {
+    width: 35%;
+    margin-right: 1%;
+  }
+  .datos-usuario .form-guardarDatos input[type="tel"] {
+    width: 64%;
+  }
+
+  .datos-usuario .form-guardarDatos input[type="submit"] {
+    justify-self: start;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
   }
 }
