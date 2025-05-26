@@ -15,7 +15,7 @@ const { faker } = require('@faker-js/faker/locale/es');
 
 // Configuración de la conexión a MongoDB
 // Reemplaza la URL con tu cadena de conexión
-const MONGODB_URI = 'mongodb://localhost:27017/TFG_Omar_Jaouad_Benchouikh';
+const MONGODB_URI = 'mongodb+srv://omar:CZl5U3I0dMJnz6Ob@cluster0.7qnys.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0' ;
 
 // Definir el esquema de Propiedad basado en el esquema proporcionado por el usuario
 const propiedadSchema = new mongoose.Schema({
