@@ -14,7 +14,14 @@
     margin: 0 auto;
     gap: 30px;
 }
-  
+
+.footer-logo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
 .footer-logo img {
     width: 120px;
     margin-bottom: 10px;
