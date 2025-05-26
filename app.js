@@ -7,13 +7,9 @@ var logger = require('morgan');
 const MongoStore = require('connect-mongo');
 const cors = require('cors');
 
-app.use(express.static(path.join(__dirname, 'public')));
 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var perfilRouter = require('./routes/perfil');
-var propiedadRouter = require('./routes/propiedades');
+
 
 
 const loginRouter = require('./routes/login');
@@ -39,7 +35,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var perfilRouter = require('./routes/perfil');
+var propiedadRouter = require('./routes/propiedades');
 
 // Sesiones para Passport
 app.use(session({
