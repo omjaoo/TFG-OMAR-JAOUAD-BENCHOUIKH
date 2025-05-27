@@ -357,14 +357,15 @@ form input[type="submit"]:hover{
 @media (max-width: 375px){
 
     .div-section{
-        width: 50%;
+        width: 100%;
         margin: 0;
         padding: 0;
         justify-content: center;
     }
 
     .input_numero{
-        margin: 3px;
+        margin: 10px;
+        width: 24px ;
     }
 
     main{
