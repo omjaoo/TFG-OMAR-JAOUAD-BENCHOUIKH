@@ -265,7 +265,7 @@ router.post(
                     </p>
             
                     <div style="text-align: center; margin: 30px 0;">
-                      <a href="http://localhost:3000" 
+                      <a href="miespacioideal.omarjaouad.dev" 
                         style="background-color: #2E86DE; color: #ffffff; text-decoration: none; 
                           padding: 12px 24px; border-radius: 4px; font-size: 16px;">
                         Mi Espacio Ideal
@@ -724,7 +724,7 @@ router.post('/actualizar-propiedad/:id', uploadPropiedad.array('fotos', 10),asyn
                   </p>
           
                   <div style="text-align: center; margin: 30px 0;">
-                    <a href="http://localhost:3000/propiedad/detalles/${propiedad.id}" 
+                    <a href="http:miespacioideal.omarjaouad.dev/propiedad/detalles/${propiedad.id}" 
                       style="background-color: #2E86DE; color: #ffffff; text-decoration: none; 
                         padding: 12px 24px; border-radius: 4px; font-size: 16px;">
                       Ver detalles
