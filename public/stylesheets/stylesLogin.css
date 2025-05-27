@@ -18,6 +18,7 @@ body{
     background-color: #F3F2F5;
 }
 
+
 main{
     margin: 30px auto;
     border: 2px solid transparent;
@@ -300,15 +301,21 @@ form input[type="submit"]:hover{
 
     main{
         width: 340px;
+        margin: 0 auto;
     }
 
     form{
         width: 330px;
     }
 
-    form > input[type="email"]{
+    .registrar-section > input[type="email"]{
         width: 250px;
     }
+
+    .registrar-section > input[type="text"]{
+        width: 250px;
+    }
+
 
     .titulo-inicio{
         font-size: 22px;
@@ -349,11 +356,19 @@ form input[type="submit"]:hover{
 
 @media (max-width: 375px){
 
-    body{
+    .div-section{
         width: 100%;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .input_numero{
+        margin: 3px;
     }
 
     main{
-        width: 320px;
+        margin-left: 17px;
+        margin-top: 50px;
     }
 }
