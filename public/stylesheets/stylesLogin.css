@@ -357,7 +357,7 @@ form input[type="submit"]:hover{
 @media (max-width: 375px){
 
     .div-section{
-        width: 100%;
+        width: 50%;
         margin: 0;
         padding: 0;
         justify-content: center;

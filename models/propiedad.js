@@ -22,7 +22,7 @@ const propiedadSchema = new mongoose.Schema({
   likes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'usuario',
-    enum: ['Propiedad', 'Busqueda']
+    enum: ['Propiedad', 'Busqueda'] 
   }],
 
   alertas: [{
