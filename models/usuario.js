@@ -14,7 +14,7 @@ const perfilInquilino = new Schema({
   },
 
   IngresosMensuales: {type: Number},
-  cartaPresentacion: {type: String, maxlength: 1000},
+  cartaPresentacion: {type: String, maxlength: 10000},
 
 }, {_id:false}); //evito que mongo me cree un id especifico para este subdocumento
 

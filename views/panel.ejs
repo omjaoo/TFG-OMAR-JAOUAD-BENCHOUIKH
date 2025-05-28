@@ -148,7 +148,7 @@
                                             <option value="+64">🇳🇿 +64 (Nueva Zelanda)</option>
                                         </select>
 
-                                        <input type="tel" name="telefono" id="telefono" placeholder="Número de teléfono"
+                                        <input type="tel" name="telefono" id="telefono" value="<%= usuario.telefono.subsctring(3)  %>" placeholder="Número de teléfono"
                                             maxlength="15" required>
                                     </div>
 
@@ -221,7 +221,7 @@
 
                             </div>
                             <label for="">Carta de presentacion</label>
-                            <textarea class="cartaPresentacion" rows="7" cols="50" type="text" name="carta"
+                            <textarea class="cartaPresentacion" rows="7" cols="50" type="text" maxlength="10000" name="carta"
                                 id="cartaPresentacion">
                                 <%= usuario.perfilInquilino?.cartaPresentacion ?? ''  %>
                             </textarea>
