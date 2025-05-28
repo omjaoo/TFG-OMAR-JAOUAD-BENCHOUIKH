@@ -189,7 +189,7 @@
                         <form class="rellenar-datos-inquilino" action="/perfil/guardarPerfilInquilino" method="post">
 
                             <label for="">¿Personas que van a vivir en esta propiedad?</label>
-                            <input type="number" name="personas" maxlength="10"  value="<%= usuario.perfilInquilino?.personasVivienda ?? '' %>" placeholder="1 persona">
+                            <input type="number" name="personas" max="10"  value="<%= usuario.perfilInquilino?.personasVivienda ?? '' %>" placeholder="1 persona">
 
                             <label for="">¿Tienen Mascota?</label>
                             <label for="">
