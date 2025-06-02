@@ -502,7 +502,9 @@ router.post("/contactar", isAuthenticated, async (req, res) => {
 
     const usuarioBbdd = await Usuario.findById(req.session.inicioSesion.id);
 
-    console.log(usuarioBbdd);
+    console.log(usuarioBbdd.email);
+
+    console.log(anunciante.email)
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
