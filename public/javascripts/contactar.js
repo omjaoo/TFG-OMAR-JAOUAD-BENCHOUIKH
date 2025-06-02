@@ -81,7 +81,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
         this.reset();
       } else {
-        console.log("Error al enviar el mensaje.");
+        console.log("Error al enviar el mensaje.", response);
       }
     } catch (error) {
       console.log("Hubo un problema al contactar al anunciante.");
