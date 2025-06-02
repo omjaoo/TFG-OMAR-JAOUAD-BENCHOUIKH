@@ -44,7 +44,7 @@ router.post(
     //codificar la altitud y latitud apartir de la localidad y la calle
     const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(direccion)}`;
 
-    console.log("direccion url geo ", url)
+    console.log("direccion url geo ", url);
 
 
     //mas sobre la geolocaliazion hago la peticion fetch para que me lo devuelva
