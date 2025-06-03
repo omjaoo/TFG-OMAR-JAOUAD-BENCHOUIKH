@@ -601,7 +601,22 @@ const insertarPropiedades = async (propietarioId, cantidad = 100) => {
     // Generar propiedades aleatorias
     for (let i = 0; i < cantidad; i++) {
       propiedades.push(generarPropiedad(propietarioId));
+
     }
+
+    // Insertar todas las propiedades de golpe
+    let resultado3 = await Propiedad.insertMany(propiedades);
+    console.log(`Se han insertado ${resultado.length} propiedades con éxito`);
+
+    // Obtener el array de _id de las propiedades recién insertadas
+    const idsPropiedades = resultado3.map(p => p._id);
+
+    // Hacer un único push con $each al array 'propiedades' del usuario
+    await Usuario.findByIdAndUpdate(
+      propietarioId,
+      { $push: { propiedades: { $each: idsPropiedades } } },
+      { new: true, useFindAndModify: false }
+    );
     
     // Insertar las propiedades en la base de datos
     const resultado = await Propiedad.insertMany(propiedades);

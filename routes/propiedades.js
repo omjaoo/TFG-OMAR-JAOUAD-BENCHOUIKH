@@ -726,7 +726,7 @@ router.post('/actualizar-propiedad/:id', uploadPropiedad.array('fotos', 10),asyn
                   </p>
           
                   <div style="text-align: center; margin: 30px 0;">
-                    <a href="https:miespacioideal.omarjaouad.dev/propiedad/detalles/${propiedad.id}" 
+                    <a href="https://miespacioideal.omarjaouad.dev/propiedad/detalles/${propiedad.id}" 
                       style="background-color: #2E86DE; color: #ffffff; text-decoration: none; 
                         padding: 12px 24px; border-radius: 4px; font-size: 16px;">
                       Ver detalles
@@ -768,6 +768,10 @@ router.post('/borrar/:id', async function(req,res,next){
     {$pull: {favoritos: req.params.id}
   })
 
+  await Usuario.updateMany(
+    {propiedades: req.params.id}, 
+    {$pull: {propiedades: req.params.id}
+  })
   
   console.log(anuncioBorrar)
 
