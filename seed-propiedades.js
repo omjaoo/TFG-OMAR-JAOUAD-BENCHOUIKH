@@ -12,7 +12,7 @@
 // Importar dependencias
 const mongoose = require('mongoose');
 const { faker } = require('@faker-js/faker/locale/es');
-const Usuario = require('./models/usuario');
+const Usuario = require('./models/usuario')
 
 // Configuración de la conexión a MongoDB
 // Reemplaza la URL con tu cadena de conexión
@@ -605,8 +605,12 @@ const insertarPropiedades = async (propietarioId, cantidad = 100) => {
 
     }
 
+    // Insertar todas las propiedades de golpe
+    let resultado3 = await Propiedad.insertMany(propiedades);
+    console.log(`Se han insertado ${resultado3.length} propiedades con éxito`);
+
     // Obtener el array de _id de las propiedades recién insertadas
-    const idsPropiedades = propiedades.map(p => p._id);
+    const idsPropiedades = resultado3.map(p => p._id);
 
     // Hacer un único push con $each al array 'propiedades' del usuario
     await Usuario.findByIdAndUpdate(
@@ -633,7 +637,7 @@ const insertarPropiedades = async (propietarioId, cantidad = 100) => {
 // Ejecutar el script si se llama directamente
 if (require.main === module) {
   // Reemplaza este ID con el ID real del propietario
-  const PROPIETARIO_ID = '683df0de124cfa7092708b2c';
+  const PROPIETARIO_ID = '683f7ce6ef5866cdf7163b94';
   
   insertarPropiedades(PROPIETARIO_ID)
     .then(() => {
