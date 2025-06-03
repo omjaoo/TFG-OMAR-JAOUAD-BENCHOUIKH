@@ -556,7 +556,7 @@ const generarPropiedad = (propietarioId) => {
     numero_habitaciones: habitaciones,
     numero_baños: baños,
     imagenes: generarImagenes(),
-    propietario: propietarioId,
+    propietario: '683f7ce6ef5866cdf7163b94',
     likes: [],  // Array vacío como solicitó el usuario
     alertas: [], // Array vacío como solicitó el usuario
     fecha_publicacion: faker.date.past({ years: 1 }),
