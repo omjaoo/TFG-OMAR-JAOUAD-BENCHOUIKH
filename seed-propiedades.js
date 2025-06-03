@@ -604,12 +604,8 @@ const insertarPropiedades = async (propietarioId, cantidad = 100) => {
 
     }
 
-    // Insertar todas las propiedades de golpe
-    let resultado3 = await Propiedad.insertMany(propiedades);
-    console.log(`Se han insertado ${resultado.length} propiedades con éxito`);
-
     // Obtener el array de _id de las propiedades recién insertadas
-    const idsPropiedades = resultado3.map(p => p._id);
+    const idsPropiedades = propiedades.map(p => p._id);
 
     // Hacer un único push con $each al array 'propiedades' del usuario
     await Usuario.findByIdAndUpdate(
@@ -618,16 +614,8 @@ const insertarPropiedades = async (propietarioId, cantidad = 100) => {
       { new: true, useFindAndModify: false }
     );
     
-    // Insertar las propiedades en la base de datos
-    const resultado = await Propiedad.insertMany(propiedades);
     
-    console.log(`Se han insertado ${resultado.length} propiedades con éxito`);
-    
-    // Cerrar la conexión
-    await mongoose.connection.close();
-    console.log('Conexión a MongoDB cerrada');
-    
-    return resultado;
+
   } catch (error) {
     console.error('Error al insertar propiedades:', error);
     
