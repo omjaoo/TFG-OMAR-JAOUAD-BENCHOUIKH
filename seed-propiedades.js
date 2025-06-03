@@ -12,6 +12,7 @@
 // Importar dependencias
 const mongoose = require('mongoose');
 const { faker } = require('@faker-js/faker/locale/es');
+const Usuario = require('./models/usuario');
 
 // Configuración de la conexión a MongoDB
 // Reemplaza la URL con tu cadena de conexión
