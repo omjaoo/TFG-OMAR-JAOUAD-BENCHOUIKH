@@ -637,7 +637,7 @@ const insertarPropiedades = async (propietarioId, cantidad = 100) => {
 // Ejecutar el script si se llama directamente
 if (require.main === module) {
   // Reemplaza este ID con el ID real del propietario
-  const PROPIETARIO_ID = '683f7ce6ef5866cdf7163b94';
+  const PROPIETARIO_ID = '683f8a0bc0d16fe4e9986a23';
   
   insertarPropiedades(PROPIETARIO_ID)
     .then(() => {
