@@ -510,7 +510,7 @@ router.post("/contactar", isAuthenticated, async (req, res) => {
       service: "gmail",
       auth: {
         user: "miespacioideal7@gmail.com",
-        pass: "lbch xelo zlbw cruj",
+        pass: "sppd uigk xlnh mhor",
       },
     });
 
